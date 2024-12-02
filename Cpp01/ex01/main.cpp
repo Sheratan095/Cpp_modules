@@ -8,5 +8,8 @@ int main()
 
 	Zombie *horde = zombieHorde(n, name);
 
+	for (int i = 0; i < n; i++)
+		horde[i].announce();
+
 	delete[]horde;
 }

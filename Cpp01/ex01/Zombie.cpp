@@ -16,3 +16,13 @@ void Zombie::announce( void )
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+void Zombie::setName(const std::string& newName)
+{
+	this->name = newName;
+}
+
+std::string Zombie::getName( void ) const
+{
+	return (this->name);
+}
