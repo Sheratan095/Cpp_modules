@@ -1,12 +1,9 @@
-NAME = megaphone
+NAME = BraiiiiiiinnnzzzZ
 
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp \
-	Zombie.cpp \
-	newZombie.cpp \
-	randomChump.cpp
+SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 all: $(NAME)
 

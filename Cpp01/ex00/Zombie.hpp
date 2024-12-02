@@ -1,27 +1,22 @@
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
 
-class Contact
+class Zombie
 {
 	private:
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickname;
-		std::string	phoneNumber;
-		std::string	darkestSecret;
-	
-	public:
-		Contact();
-		Contact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret);
-		~Contact();
+		std::string	name;
 
-		std::string	getFirstName();
-		std::string	getLastName();
-		std::string	getNickname();
-		std::string	getPhoneNumber();
-		std::string	getDarkestSecret();
+	public:
+		Zombie(std::string name);
+		~Zombie();
+
+	void	announce( void );
 };
+
+Zombie*	newZombie( std::string name );
+
+void randomChump(std::string name);
 
 #endif
