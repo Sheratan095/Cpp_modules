@@ -28,6 +28,7 @@ test: all
 
 val: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes ./$(NAME) $(ARGS)
+
 #COLORS
 
 GREEN=\033[0;32m
