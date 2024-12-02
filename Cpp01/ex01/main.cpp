@@ -2,9 +2,8 @@
 
 int main()
 {
-	int n = 5;
-
-	std::string name = "zombie";
+	int			n = 5;
+	std::string	name = "zombie";
 
 	Zombie *horde = zombieHorde(n, name);
 
