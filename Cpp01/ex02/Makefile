@@ -9,15 +9,15 @@ all: $(NAME)
 
 $(NAME): $(SRCS)
 	@$(CC) $(SRCS) -o $(NAME)
-	@echo "$(GREEN)[CP00]:\t PROJECT COMPILED$(RESET)"
+	@echo "$(GREEN)[$(NAME)]:\t PROJECT COMPILED$(RESET)"
 
 clean:
 	@rm -rf $(NAME)
-	@echo "$(RED)[CP00]:\t CLEAN$(RESET)"
+	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)[CP00]:\t FCLEAN$(RESET)"
+	@echo "$(RED)[$(NAME)]:\t FCLEAN$(RESET)"
 
 re: fclean all
 
