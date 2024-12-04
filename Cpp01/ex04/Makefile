@@ -1,9 +1,9 @@
 NAME = SedIsForLosers
 
 CC = c++ -std=c++98 -g -I.
-# CC += -Wall -Wextra -Werror
+CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp 
+SRCS = main.cpp
 
 all: $(NAME)
 
@@ -12,7 +12,7 @@ $(NAME): $(SRCS)
 	@echo "$(GREEN)[$(NAME)]:\t PROJECT COMPILED$(RESET)"
 
 clean:
-	@rm -rf $(NAME)
+	@rm *.replace
 	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
 
 fclean: clean
@@ -21,7 +21,7 @@ fclean: clean
 
 re: fclean all
 
-arg = main.cpp dasda main.cpp
+arg = Test.txt " " "dasdas"
 
 test: all
 	./$(NAME) $(arg)

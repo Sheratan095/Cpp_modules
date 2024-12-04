@@ -12,7 +12,6 @@ $(NAME): $(SRCS)
 	@echo "$(GREEN)[$(NAME)]:\t PROJECT COMPILED$(RESET)"
 
 clean:
-	@rm -rf $(NAME)
 	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
 
 fclean: clean
