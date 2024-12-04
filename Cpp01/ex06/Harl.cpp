@@ -46,7 +46,11 @@ void Harl::complain(std::string level)
 
 	//map.end() is is a special iterator that represents one past the last valid element in the map
 	if (it != levelMap.end())
-		(this->*(it->second))();//it->second is the function that corresponds to the level
+	{
+		// Reach the end of the map => print all level
+		for (; it != levelMap.end(); ++it)
+			(this->*(it->second))(); // Call the corresponding function
+	}
 	else
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
