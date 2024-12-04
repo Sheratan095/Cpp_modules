@@ -1,9 +1,9 @@
-NAME = SedIsForLosers
+NAME = Harl
 
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp
+SRCS = main.cpp Harl.cpp
 
 all: $(NAME)
 
@@ -12,7 +12,6 @@ $(NAME): $(SRCS)
 	@echo "$(GREEN)[$(NAME)]:\t PROJECT COMPILED$(RESET)"
 
 clean:
-	@rm -f *.replace
 	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
 
 fclean: clean

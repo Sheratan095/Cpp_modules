@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-int main()
+int main( void )
 {
 	int			n = 5;
 	std::string	name = "zombie";

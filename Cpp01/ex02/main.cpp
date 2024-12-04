@@ -6,7 +6,7 @@
  Cannot be reassigned to refer to another string.
 */
 
-int main()
+int main( void )
 {
 	std::string	string	= "HI THIS IS BRAIN";
 
