@@ -20,7 +20,7 @@ fclean: clean
 
 re: fclean all
 
-arg = WARNING
+arg =
 
 test: all
 	./$(NAME) $(arg)
