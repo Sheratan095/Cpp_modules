@@ -48,5 +48,5 @@ void Harl::complain(std::string level)
 	if (it != levelMap.end())
 		(this->*(it->second))();//it->second is the function that corresponds to the level
 	else
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
