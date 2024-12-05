@@ -37,15 +37,19 @@ void Harl::complain( std::string level )
 	switch (i)
 	{
 		case 0:
+			std::cout << "[ DEBUG ]" << std::endl;
 			this->debug();
 			std::cout << std::endl;
 		case 1:
+			std::cout << "[ INFO ]" << std::endl;
 			this->info();
 			std::cout << std::endl;
 		case 2:
+			std::cout << "[ WARNING ]" << std::endl;
 			this->warning();
 			std::cout << std::endl;
 		case 3:
+			std::cout << "[ ERROR ]" << std::endl;
 			this->error();
 			std::cout << std::endl;
 			break;
