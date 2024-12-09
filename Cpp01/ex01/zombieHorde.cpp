@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 17:26:04 by maceccar          #+#    #+#             */
+/*   Updated: 2024/12/09 16:31:50 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
 // Dynamically allocates an array of N Zombie objects on the heap.

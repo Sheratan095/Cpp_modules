@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 16:26:04 by maceccar          #+#    #+#             */
+/*   Created: 2024/05/12 00:29:28 by maceccar          #+#    #+#             */
 /*   Updated: 2024/12/09 16:31:50 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
-#include "Weapon.hpp"
-#include "HumanB.hpp"
 
-// Initialize `weapon` to `nullptr`, meaning unarmed
-HumanB::HumanB(std::string name): name(name)
+class Fixed
 {
-	this->weapon = NULL;
-}
+private:
+    int raw_bits;
+    static const int bits = 8;
+    
+public:
+    Fixed();
+    Fixed(const Fixed &rhs);
+    ~Fixed();
+    Fixed &operator=(Fixed const &rhs);
 
-HumanB::~HumanB()
-{}
+    int getRawBits( void ) const;
+    void setRawBits( int const raw );
+};
 
-void HumanB::attack( void )
-{
-	std::cout << this->name;
-
-	if (weapon)
-		std::cout << " attacks with their " << this->weapon->getType();
-	else
-		std::cout << " is disarmed";
-
-	std::cout << std::endl;
-}
-
-//Take reference just because the main want to do it
-void	HumanB::setWeapon(Weapon &newWeapon)
-{
-	this->weapon = &newWeapon;
-}
+#endif
