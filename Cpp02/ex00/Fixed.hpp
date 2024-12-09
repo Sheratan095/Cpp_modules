@@ -24,10 +24,10 @@ class Fixed
 
 	public:
 		Fixed();
-		Fixed(const Fixed &rhs);
+		Fixed(const Fixed &value);
 		~Fixed();
 
-		Fixed	&operator=(Fixed const &rhs);
+		Fixed	&operator=(Fixed const &value);
 
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );

@@ -29,6 +29,11 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
+std::ostream &operator<<(std::ostream &os, Fixed const &value)
+{
+	return (os << value.toFloat());
+}
+
 Fixed	&Fixed::operator=(Fixed const &value)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
