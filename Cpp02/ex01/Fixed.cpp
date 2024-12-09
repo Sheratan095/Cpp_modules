@@ -24,12 +24,20 @@ Fixed::Fixed(const Fixed &value)
 	*this = value;
 }
 
+Fixed::Fixed(const int number)
+{
+	std::cout << "Int constructor called" << std::endl;
+
+	//Left-shifting a number by 8 bits is equivalent to multiplying it by 2^8=256
+	this->raw_bits = number << bits;
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &os, Fixed const &value)
+std::ostream	&operator<<(std::ostream &os, Fixed const &value)
 {
 	return (os << value.toFloat());
 }
