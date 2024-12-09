@@ -18,17 +18,19 @@
 class Fixed
 {
 	private:
-		int			raw_bits;
-		static const int bits = 8;
-		
+		static const int	bits = 8;
+
+		int					raw_bits;
+
 	public:
 		Fixed();
 		Fixed(const Fixed &rhs);
 		~Fixed();
-		Fixed &operator=(Fixed const &rhs);
-	
-		int getRawBits( void ) const;
-		void setRawBits( int const raw );
+
+		Fixed	&operator=(Fixed const &rhs);
+
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
 };
 
 #endif

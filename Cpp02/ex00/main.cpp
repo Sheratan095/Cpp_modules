@@ -16,14 +16,26 @@
 int main( void )
 {
 	Fixed a;
+	a.setRawBits(8);
+
+	std::cout << std::endl;
+
 	Fixed b( a );
+	b.setRawBits(4389);
+
+	std::cout << std::endl;
+
 	Fixed c;
+
+	std::cout << std::endl;
 
 	c = b;
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+	std::cout << std::endl;
+
+	std::cout << a.getRawBits() << std::endl << std::endl;
+	std::cout << b.getRawBits() << std::endl << std::endl;
+	std::cout << c.getRawBits() << std::endl << std::endl;
 
 	return 0;
 }
