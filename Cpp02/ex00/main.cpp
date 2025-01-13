@@ -37,5 +37,5 @@ int main( void )
 	std::cout << b.getRawBits() << std::endl << std::endl;
 	std::cout << c.getRawBits() << std::endl << std::endl;
 
-	return 0;
+	return (0);
 }
