@@ -16,23 +16,26 @@
 int main( void )
 {
 	Fixed a;
+	a.setRawBits(8);
 
-	Fixed const b( 10 );
+	std::cout << std::endl;
 
-	Fixed const c( 42.42f );
+	Fixed b( a );
+	b.setRawBits(4389);
 
-	Fixed const d( b );
+	std::cout << std::endl;
 
-	a = Fixed( 1234.4321f );
+	Fixed c;
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	std::cout << std::endl;
+
+	c = b;
+
+	std::cout << std::endl;
+
+	std::cout << a.getRawBits() << std::endl << std::endl;
+	std::cout << b.getRawBits() << std::endl << std::endl;
+	std::cout << c.getRawBits() << std::endl << std::endl;
 
 	return 0;
 }

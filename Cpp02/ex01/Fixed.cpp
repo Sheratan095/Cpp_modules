@@ -21,15 +21,7 @@ Fixed::Fixed(const Fixed &value)
 {
 	std::cout << "Copy constructor called" << std::endl;
 
-	*this = value;
-}
-
-Fixed::Fixed(const int number)
-{
-	std::cout << "Int constructor called" << std::endl;
-
-	//Left-shifting a number by 8 bits is equivalent to multiplying it by 2^8=256
-	this->raw_bits = number << bits;
+	this->raw_bits = value.raw_bits;
 }
 
 Fixed::~Fixed()
@@ -37,16 +29,16 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-std::ostream	&operator<<(std::ostream &os, Fixed const &value)
-{
-	return (os << value.toFloat());
-}
-
 Fixed	&Fixed::operator=(Fixed const &value)
 {
+	if (&value == this)
+	{
+		return (*this);
+	}
+
 	std::cout << "Copy assignment operator called" << std::endl;
 
-	this->raw_bits = value.getRawBits();
+	this->raw_bits = value.raw_bits;
 
 	return (*this);
 }
