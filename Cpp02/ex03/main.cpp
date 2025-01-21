@@ -1,17 +1,17 @@
 #include <iostream>
 #include "Point.hpp"
-#include "Fixed.hpp"
 
-bool bsp( Point const a, Point const b, Point const c, Point const point);
+bool bsp(const Point a, const Point b, const Point c, const Point point);
 
-void testBsp() {
+void testBsp()
+{
 	// Triangle vertices
-	Point a(Fixed(0), Fixed(0));
-	Point b(Fixed(10), Fixed(0));
-	Point c(Fixed(5), Fixed(10));
+	Point a(Fixed(1), Fixed(1));
+	Point b(Fixed(5), Fixed(1));
+	Point c(Fixed(3), Fixed(6));
 
 	// Test case 1: Point inside the triangle
-	Point insidePoint(Fixed(5), Fixed(5));
+	Point insidePoint(Fixed(2), Fixed(1.5f));
 	if (bsp(a, b, c, insidePoint))
 		std::cout << "Test 1 passed: Point is inside the triangle.\n";
 	else
@@ -22,10 +22,10 @@ void testBsp() {
 	if (!bsp(a, b, c, outsidePoint))
 		std::cout << "Test 2 passed: Point is outside the triangle.\n";
 	else
-		std::cout << "Test 2 failed: Point should be outside the triangle.\n";
+		std::cout << "Test 2 failed: Point s	hould be outside the triangle.\n";
 
 	// Test case 3: Point on the edge of the triangle
-	Point edgePoint(Fixed(5), Fixed(0));
+	Point edgePoint(Fixed(1), Fixed(2));
 	if (!bsp(a, b, c, edgePoint))
 		std::cout << "Test 3 passed: Point is on the edge of the triangle.\n";
 	else
@@ -52,5 +52,6 @@ void testBsp() {
 int main()
 {
 	testBsp();
-	return 0;
+
+	return (0);
 }

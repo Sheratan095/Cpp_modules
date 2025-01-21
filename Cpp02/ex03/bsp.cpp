@@ -16,15 +16,13 @@ bool bsp(const Point a, const Point b, const Point c, const Point point)
 {
 	float triangleArea = getArea(a, b, c);
 
-	float sec1Area = getArea(point, a, b);
-	float sec2Area = getArea(point, a, c);
-	float sec3Area = getArea(point, b, c);
+	float pab = getArea(point, a, b);
+	float pac = getArea(point, a, c);
+	float pbc = getArea(point, b, c);
 
 	// Point on the edge
-	if (sec1Area == 0.0f || sec2Area == 0.0f || sec3Area == 0.0f)
-	{
-		return false;
-	}
+	if (pab == 0 || pac == 0 || pbc == 0)
+		return (false);
 
-	return (sec1Area + sec2Area + sec3Area) == triangleArea;
+	return ((pab + pac + pbc) == triangleArea);
 }
