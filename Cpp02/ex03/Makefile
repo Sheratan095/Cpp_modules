@@ -3,7 +3,7 @@ NAME = BSP
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp Fixed.cpp bsp.cpp point.cpp
+SRCS = main.cpp Fixed.cpp bsp.cpp Point.cpp
 
 all: $(NAME)
 
@@ -13,6 +13,7 @@ $(NAME): $(SRCS)
 
 clean:
 	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
+	
 
 fclean: clean
 	@rm -f $(NAME)

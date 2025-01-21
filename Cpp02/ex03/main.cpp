@@ -1,140 +1,56 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 17:13:41 by maceccar          #+#    #+#             */
-/*   Updated: 2025/01/13 17:13:41 by maceccar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <iostream>
+#include "Point.hpp"
 #include "Fixed.hpp"
-#include <ostream>
 
-static void	testArithmeticOperators();
-static void	testUnaryOperators();
-static void	testComparisonOperators();
-static void	testMinMax();
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
-int main( void )
-{
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
+void testBsp() {
+	// Triangle vertices
+	Point a(Fixed(0), Fixed(0));
+	Point b(Fixed(10), Fixed(0));
+	Point c(Fixed(5), Fixed(10));
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
+	// Test case 1: Point inside the triangle
+	Point insidePoint(Fixed(5), Fixed(5));
+	if (bsp(a, b, c, insidePoint))
+		std::cout << "Test 1 passed: Point is inside the triangle.\n";
+	else
+		std::cout << "Test 1 failed: Point should be inside the triangle.\n";
 
-	testArithmeticOperators();
-	testUnaryOperators();
-	testComparisonOperators();
-	testMinMax();
+	// Test case 2: Point outside the triangle
+	Point outsidePoint(Fixed(15), Fixed(5));
+	if (!bsp(a, b, c, outsidePoint))
+		std::cout << "Test 2 passed: Point is outside the triangle.\n";
+	else
+		std::cout << "Test 2 failed: Point should be outside the triangle.\n";
 
-	return (0);
+	// Test case 3: Point on the edge of the triangle
+	Point edgePoint(Fixed(5), Fixed(0));
+	if (!bsp(a, b, c, edgePoint))
+		std::cout << "Test 3 passed: Point is on the edge of the triangle.\n";
+	else
+		std::cout << "Test 3 failed: Point should be on the edge of the triangle.\n";
+
+	// Test case 4: Point at a vertex of the triangle
+	Point vertexPoint = a;
+	if (!bsp(a, b, c, vertexPoint))
+		std::cout << "Test 4 passed: Point is at a vertex of the triangle.\n";
+	else
+		std::cout << "Test 4 failed: Point should be at a vertex of the triangle.\n";
+
+	// Test case 5: Degenerate triangle (all points are collinear)
+	Point collinearA(Fixed(0), Fixed(0));
+	Point collinearB(Fixed(5), Fixed(5));
+	Point collinearC(Fixed(10), Fixed(10));
+	Point testPoint(Fixed(3), Fixed(3));
+	if (!bsp(collinearA, collinearB, collinearC, testPoint))
+		std::cout << "Test 5 passed: Degenerate triangle handled correctly.\n";
+	else
+		std::cout << "Test 5 failed: Degenerate triangle should return false.\n";
 }
 
-static void	testArithmeticOperators()
+int main()
 {
-	std::cout << std::endl << "TESTING ARITHMETIC OPERATORS:" << std::endl;
-
-	Fixed a(2);
-	Fixed b(5);
-	
-	Fixed result;
-
-	// Test addition
-	result = a + b;
-	std::cout << "a + b = " << result << std::endl;
-
-	// Test subtraction
-	result = a - b;
-	std::cout << "a - b = " << result << std::endl;
-
-	// Test multiplication
-	result = a * b;
-	std::cout << "a * b = " << result << std::endl;
-
-	// Test division
-	result = a / b;
-	std::cout << "a / b = " << result << std::endl;
-
-	std::cout << std::endl;
-}
-
-static void	testUnaryOperators()
-{
-	std::cout << std::endl << "TESTING UNARY OPERATORS:" << std::endl;
-
-	Fixed a(5);
-	Fixed result;
-
-	// Test pre-increment
-	result = ++a;
-	std::cout << "Pre-increment: " << result << std::endl;
-
-	// Test post-increment
-	result = a++;
-	std::cout << "Post-increment: " << result << std::endl;
-	std::cout << "After post-increment: " << a << std::endl;
-
-	// Test pre-decrement
-	result = --a;
-	std::cout << "Pre-decrement: " << result << std::endl;
-
-	// Test post-decrement
-	result = a--;
-	std::cout << "Post-decrement: " << result << std::endl;
-	std::cout << "After post-decrement: " << a << std::endl;
-
-	std::cout << std::endl;
-}
-
-static void	testComparisonOperators()
-{
-	std::cout << std::endl << "TESTING COMPARISON OPERATORS:" << std::endl;
-
-	Fixed a(5);
-	Fixed b(5);
-	Fixed c(10);
-
-	// Test equality
-	std::cout << "a == b: " << (a == b ? "true" : "false") << std::endl;
-	std::cout << "a == c: " << (a == c ? "true" : "false") << std::endl;
-
-	// Test inequality
-	std::cout << "a != b: " << (a != b ? "true" : "false") << std::endl;
-	std::cout << "a != c: " << (a != c ? "true" : "false") << std::endl;
-
-	// Test less than
-	std::cout << "a < c: " << (a < c ? "true" : "false") << std::endl;
-
-	// Test greater than
-	std::cout << "a > c: " << (a > c ? "true" : "false") << std::endl;
-
-	// Test less than or equal to
-	std::cout << "a <= b: " << (a <= b ? "true" : "false") << std::endl;
-
-	// Test greater than or equal to
-	std::cout << "a >= c: " << (a >= c ? "true" : "false") << std::endl;
-
-	std::cout << std::endl;
-}
-
-static void	testMinMax()
-{
-	std::cout << std::endl << "TESTING MIN AND MAX FUNCTIONS:" << std::endl;
-
-	Fixed a(5);
-	Fixed b(10);
-	
-	std::cout << "Min of a and b: " << Fixed::min(a, b) << std::endl;
-	std::cout << "Max of a and b: " << Fixed::max(a, b) << std::endl;
-
-	std::cout << std::endl;
+	testBsp();
+	return 0;
 }

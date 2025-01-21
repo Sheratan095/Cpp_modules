@@ -1,27 +1,37 @@
-#ifndef POINT_HPP
-# define POINT_HPP
+#include "Point.hpp"
 
-# include "Fixed.hpp"
+Point::Point(void): x(Fixed()), y(Fixed())
+{}
 
-class Point
+Point::Point(Fixed x, Fixed y) : x(Fixed(x)), y(Fixed(y))
+{}
+
+Point::Point(Point &p) : x(Fixed(p.x)), y(Fixed(p.y))
+{}
+
+Point &Point::operator=(const Point &p)
 {
-	private:
-		const Fixed	x;
-		const Fixed	y;
+	(void)p;
 
-	public:
-		Point();
-		Point(const Point& other);
-		Point(Fixed const x, Fixed const y);
-		~Point();
-		Point& operator=(const Point& other);
-		Fixed getX() const;
-		Fixed getY() const;
-		void setX(Fixed const x);
-		void setY(Fixed const y);
+	return (*this);
+}
 
-};
+Point::~Point()
+{}
 
-bool bsp( Point const a, Point const b, Point const c, Point const point);
+const Fixed Point::getX(void) const
+{
+	return (this->x);
+}
 
-#endif
+const Fixed Point::getY(void) const
+{
+	return (this->y);
+}
+
+std::ostream &operator<<(std::ostream &os, const Point &p)
+{
+	os << "(" << p.getX() << ";" << p.getY() << ")";
+
+	return (os);
+}
