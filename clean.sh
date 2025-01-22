@@ -1,7 +1,5 @@
-for dir in ./*/*/; do
+for dir in ./*/*/; do 
 	make -C "$dir" fclean > /dev/null 2>&1
 done
 
-echo "Clean operation completed successfully!"
-
-
+echo "Clean operation completed successfully!";
