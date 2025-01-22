@@ -32,7 +32,7 @@ Fixed::Fixed(const float number)
 {
 	std::cout << "Float constructor called" << std::endl;
 
-	this->raw_bits = static_cast<int>(roundf(number * (1 << bits)));
+	this->raw_bits = roundf(number * (1 << bits));
 }
 
 Fixed::Fixed(const Fixed &value)
@@ -173,12 +173,12 @@ bool Fixed::operator>=(const Fixed &rhs) const
 
 float	Fixed::toFloat( void ) const
 {
-	return ((float)raw_bits / (float)(1 << bits));
+	return ((float)raw_bits / (1 << bits));
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (raw_bits / (1 << bits));
+	return (raw_bits >> bits);
 }
 
 
