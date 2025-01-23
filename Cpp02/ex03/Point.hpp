@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 04:49:48 by maceccar          #+#    #+#             */
+/*   Updated: 2025/01/23 04:49:48 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef POINT_HPP
 #define POINT_HPP
 
@@ -7,8 +19,8 @@
 class Point
 {
 	private:
-		const Fixed x;
-		const Fixed y;
+		const Fixed	x;
+		const Fixed	y;
 
 	public:
 		Point(void);
@@ -16,12 +28,12 @@ class Point
 		Point(Point &p);
 		~Point();
 
-		Point &operator=(const Point &p);
+		Point		&operator=(const Point &p);
 
-		const Fixed getX(void) const;
-		const Fixed getY(void) const;
+		const Fixed	getX(void) const;
+		const Fixed	getY(void) const;
 };
 
-std::ostream &operator<<(std::ostream &os, const Point &p);
+std::ostream	&operator<<(std::ostream &os, const Point &p);
 
-#endif //POINT_HPP
+#endif

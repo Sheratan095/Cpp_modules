@@ -6,13 +6,13 @@
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 00:29:22 by maceccar          #+#    #+#             */
-/*   Updated: 2024/12/09 16:31:54 by maceccar         ###   ########.fr       */
+/*   Updated: 2025/01/23 04:46:09 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
 #include <ostream>
 #include <cmath>
+#include "Fixed.hpp"
 
 //---------------CONSTRUCTORS - DESTRUCTORS---------------
 
@@ -53,9 +53,7 @@ Fixed::~Fixed()
 Fixed	&Fixed::operator=(Fixed const &value)
 {
 	if (&value == this)
-	{
 		return (*this);
-	}
 
 	std::cout << "Copy assignment operator called" << std::endl;
 
@@ -110,6 +108,7 @@ Fixed	Fixed::operator/(const Fixed &rhs) const
 Fixed	&Fixed::operator++(void)
 {
 	this->raw_bits++;
+
 	return (*this);
 }
 
@@ -118,12 +117,14 @@ Fixed	Fixed::operator++(int)
 	Fixed	old(*this);
 
 	this->raw_bits++;
+
 	return (old);
 }
 
 Fixed	&Fixed::operator--(void)
 {
 	this->raw_bits--;
+
 	return (*this);
 }
 
@@ -132,6 +133,7 @@ Fixed	Fixed::operator--(int)
 	Fixed	old(*this);
 
 	this->raw_bits--;
+
 	return (old);
 }
 

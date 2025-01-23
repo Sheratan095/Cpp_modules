@@ -1,9 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 04:48:36 by maceccar          #+#    #+#             */
+/*   Updated: 2025/01/23 04:48:36 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Point.hpp"
 
 bool bsp( Point const a, Point const b, Point const c, Point const point);
+static void testBsp();
 
-void testBsp()
+int	main()
+{
+	testBsp();
+
+	return (0);
+}
+
+static void	testBsp()
 {
 	// Triangle vertices
 	Point a(Fixed(1), Fixed(1));
@@ -47,11 +67,4 @@ void testBsp()
 		std::cout << "Test 5 passed: Degenerate triangle handled correctly.\n";
 	else
 		std::cout << "Test 5 failed: Degenerate triangle should return false.\n";
-}
-
-int main()
-{
-	testBsp();
-
-	return (0);
 }

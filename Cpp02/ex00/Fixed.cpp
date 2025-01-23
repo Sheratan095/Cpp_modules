@@ -6,7 +6,7 @@
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 00:29:22 by maceccar          #+#    #+#             */
-/*   Updated: 2024/12/09 16:31:54 by maceccar         ###   ########.fr       */
+/*   Updated: 2025/01/23 04:42:41 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ Fixed::~Fixed()
 Fixed	&Fixed::operator=(Fixed const &value)
 {
 	if (&value == this)
-	{
 		return (*this);
-	}
 
 	std::cout << "Copy assignment operator called" << std::endl;
 
