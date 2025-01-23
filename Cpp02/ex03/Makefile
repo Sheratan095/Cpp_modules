@@ -21,6 +21,8 @@ fclean: clean
 
 re: fclean all
 
+arg =
+
 test: all
 	./$(NAME) $(arg)
 
