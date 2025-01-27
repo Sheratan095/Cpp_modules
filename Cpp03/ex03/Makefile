@@ -1,4 +1,4 @@
-NAME = RepetitiveWork
+NAME = NowItsWeird
 
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror

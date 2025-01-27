@@ -10,23 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
 # include <iostream>
-# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
+	private:
+		std::string	name;
+
 	public:
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &fragTrap); //copy constructor
-		~FragTrap();
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap &diamondTrap); //copy constructor
+		~DiamondTrap();
 
-		FragTrap	&operator=(const FragTrap &fragTrap); //copy assignment operator
+		DiamondTrap	&operator=(const DiamondTrap &diamondTrap); //copy assignment operator
 
-		void	attack(const std::string& target);
-		void	highFivesGuys(void);
+		void	whoAmI();
+
+		using ScavTrap::attack;
 };
 
 #endif
