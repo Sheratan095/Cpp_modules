@@ -18,9 +18,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		bool	guardGateStatus;
-
 	public:
 		FragTrap(std::string name);
 		FragTrap(const FragTrap &fragTrap); //copy constructor

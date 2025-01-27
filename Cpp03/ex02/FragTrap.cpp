@@ -15,7 +15,7 @@
 //---------------CONSTRUCTORS - DESTRUCTORS---------------
 
 // constructor with parameter
-FragTrap::FragTrap(std::string name): ClapTrap(name), guardGateStatus(false)
+FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
 	this->hitPoints = 100;
 	this->energyPoints = 100;
