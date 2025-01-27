@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:18:33 by maceccar          #+#    #+#             */
-/*   Updated: 2025/01/27 16:45:54 by maceccar         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:35:08 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
-	public:
-		FragTrap(std::string name);
-		FragTrap(const FragTrap &fragTrap); //copy constructor
-		~FragTrap();
+	private:
+		bool	guardGateStatus;
 
-		FragTrap	&operator=(const FragTrap &fragTrap); //copy assignment operator
+	public:
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &scavTrap); //copy constructor
+		~ScavTrap();
+
+		ScavTrap	&operator=(const ScavTrap &scavTrap); //copy assignment operator
 
 		void	attack(const std::string& target);
-		void	highFivesGuys(void);
+		void	guardGate();
 };
 
 #endif
