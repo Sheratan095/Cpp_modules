@@ -6,7 +6,8 @@
 // constructor with parameter
 ClapTrap::ClapTrap(std::string name): name(name), energyPoints(10), hitPoints(10), attackDamage(10)
 {
-	std::cout << "Constructor called, name: " << this->name << std::endl;
+	this->maxHitPoints = hitPoints;
+	std::cout << "[ClapTrap] Constructor called, name: " << this->name << std::endl;
 }
 
 // copy constructor
@@ -14,14 +15,15 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 	: name (clapTrap.name),
 	  energyPoints(clapTrap.energyPoints),
 	  hitPoints(clapTrap.hitPoints),
+	  maxHitPoints(clapTrap.maxHitPoints),
 	  attackDamage(clapTrap.attackDamage)
 {
-	std::cout << "Copy constructor called, name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Copy constructor called, name: " << this->name << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called, name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Destructor called, name: " << this->name << std::endl;
 }
 
 
@@ -38,7 +40,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 	this->energyPoints = clapTrap.energyPoints;
 	this->attackDamage = clapTrap.attackDamage;
 
-	std::cout << "Copy assignment operator called, new name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Copy assignment operator called, new name: " << this->name << std::endl;
 
 	return (*this);
 }
@@ -108,7 +110,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << this->name << " is resurrected" << std::endl;
 
 	// check if life points have reached their maximum (10)
-	this->hitPoints = (this->hitPoints + amount >= 10) ? 10 : this->hitPoints + amount;
+	this->hitPoints = (this->hitPoints + amount >= this->maxHitPoints) ? this->maxHitPoints : this->hitPoints + amount;
 
 	this->energyPoints--;
 

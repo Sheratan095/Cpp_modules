@@ -8,10 +8,7 @@
 class ScavTrap : public ClapTrap
 {
 	private:
-		std::string		name;
-		int				energyPoints;
-		unsigned int	hitPoints;//health
-		unsigned int	attackDamage;
+		bool	guardGateStatus;
 
 	public:
 		ScavTrap(std::string name);
@@ -20,9 +17,8 @@ class ScavTrap : public ClapTrap
 
 		ScavTrap	&operator=(const ScavTrap &scavTrap); //copy assignment operator
 
-		void		attack(const std::string& target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		void	attack(const std::string& target);
+		void	guardGate();
 };
 
 #endif
