@@ -1,6 +1,5 @@
 #include "DiamondTrap.hpp"
 
-// Constructor
 DiamondTrap::DiamondTrap(std::string name)
 	: ClapTrap(name + "_clap_name"),
 	  ScavTrap(name),
@@ -12,7 +11,21 @@ DiamondTrap::DiamondTrap(std::string name)
 	this->attackDamage = FragTrap::attackDamage;
 	this->maxHitPoints = this->hitPoints;
 
-	std::cout << "[DiamondTrap	] Constructor called, name: " << this->name << std::endl;
+	std::cout << "[DiamondTrap] Constructor called, name: " << this->name << std::endl;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap)
+	: ClapTrap(diamondTrap),
+	  ScavTrap(diamondTrap),
+	  FragTrap(diamondTrap)
+{
+	this->name = diamondTrap.name;
+	this->hitPoints = diamondTrap.hitPoints;
+	this->energyPoints = diamondTrap.energyPoints;
+	this->attackDamage = diamondTrap.attackDamage;
+	this->maxHitPoints = diamondTrap.maxHitPoints;
+
+	std::cout << "[DiamondTrap] Copy constructor called, name: " << this->name << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()
@@ -20,15 +33,17 @@ DiamondTrap::~DiamondTrap()
 	std::cout << "[DiamondTrap] Destructor called, name: " << this->name << std::endl;
 }
 
-DiamondTrap & DiamondTrap::operator=(DiamondTrap const & diamondTrap)
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &diamondTrap)
 {
-	std::cout << "Assignation operator for \033[97mDiamondTrap\033[0m called" << std::endl;
 	this->name = diamondTrap.name;
 	this->hitPoints = diamondTrap.hitPoints;
 	this->energyPoints = diamondTrap.energyPoints;
 	this->attackDamage = diamondTrap.attackDamage;
 	this->maxHitPoints = this->hitPoints;
-	return *this;
+
+	std::cout << "[DiamondTrap] Copy assignment operator called, new name: " << this->name << std::endl;
+
+	return (*this);
 }
 
 void	DiamondTrap::whoAmI()
