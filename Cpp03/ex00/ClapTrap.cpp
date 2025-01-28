@@ -105,7 +105,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	if (this->energyPoints == 0)
 	{
 		std::cout << "ClapTrap " << this->name <<
-			" tried to attack but he hasn't more energy point" << std::endl;
+			" tried to be repaired but he hasn't more energy point" << std::endl;
 		return ;
 	}
 
