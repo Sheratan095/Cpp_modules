@@ -88,4 +88,4 @@ void	ScavTrap::guardGate()
 		std::cout << "ScavTrap " << this->name << "'s guard gate is now on" << std::endl;
 	else
 		std::cout << "ScavTrap " << this->name << "'s guard gate is now off" << std::endl;
-} 
+}
