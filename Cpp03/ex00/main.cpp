@@ -120,7 +120,7 @@ void	testBeRepaired()
 void	testSelfAssignment()
 {
 	ClapTrap obj1("Robot1");
-	obj1 = obj1;  // Self-assignment test
+	// obj2 = obj1;  // Self-assignment test
 	obj1.attack("Enemy4");
 	obj1.takeDamage(1);
 	obj1.beRepaired(4);

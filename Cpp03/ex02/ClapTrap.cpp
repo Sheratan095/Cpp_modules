@@ -50,6 +50,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 	this->hitPoints = clapTrap.hitPoints;
 	this->energyPoints = clapTrap.energyPoints;
 	this->attackDamage = clapTrap.attackDamage;
+	this->maxHitPoints = clapTrap.maxHitPoints;
 
 	std::cout << "[ClapTrap] Copy assignment operator called, new name: " << this->name << std::endl;
 

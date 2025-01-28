@@ -14,10 +14,9 @@
 
 //---------------CONSTRUCTORS - DESTRUCTORS---------------
 
-// constructor with parameter
 ClapTrap::ClapTrap(std::string name): name(name), energyPoints(10), hitPoints(10), attackDamage(10)
 {
-	std::cout << "Constructor called, name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Constructor called, name: " << this->name << std::endl;
 }
 
 // copy constructor
@@ -27,12 +26,12 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 	  hitPoints(clapTrap.hitPoints),
 	  attackDamage(clapTrap.attackDamage)
 {
-	std::cout << "Copy constructor called, name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Copy constructor called, name: " << this->name << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called, name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Destructor called, name: " << this->name << std::endl;
 }
 
 
@@ -49,11 +48,10 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 	this->energyPoints = clapTrap.energyPoints;
 	this->attackDamage = clapTrap.attackDamage;
 
-	std::cout << "Copy assignment operator called, new name: " << this->name << std::endl;
+	std::cout << "[ClapTrap] Copy assignment operator called, new name: " << this->name << std::endl;
 
 	return (*this);
 }
-
 
 //--------------------------------------------------
 

@@ -26,9 +26,28 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name), guardGateStatus(false)
 }
 
 // copy constructor
-ScavTrap::ScavTrap(const ScavTrap &slapTrap) : ClapTrap (slapTrap)
+ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap (scavTrap)
 {
+	this->guardGateStatus = scavTrap.guardGateStatus;
+
 	std::cout << "[ScavTrap] Copy constructor called, name: " << this->name << std::endl;
+}
+
+ScavTrap	&ScavTrap::operator=(const ScavTrap &scavTrap)
+{
+	if (this == &scavTrap)
+		return (*this);
+
+	this->name = scavTrap.name;
+	this->hitPoints = scavTrap.hitPoints;
+	this->energyPoints = scavTrap.energyPoints;
+	this->attackDamage = scavTrap.attackDamage;
+	this->maxHitPoints = scavTrap.maxHitPoints;
+	this->guardGateStatus = scavTrap.guardGateStatus;
+
+	std::cout << "[ScavTrap] Copy assignment operator called, new name: " << this->name << std::endl;
+
+	return (*this);
 }
 
 ScavTrap::~ScavTrap()
