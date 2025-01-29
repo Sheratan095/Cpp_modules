@@ -31,7 +31,7 @@ Cat	&Cat::operator=(const Cat &rhs)
 	if (&rhs == this)
 		return (*this);
 
-	this->type = rhs.getType();
+	Animal::operator=(rhs);
 
 	return (*this);
 }

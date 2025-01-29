@@ -1,38 +1,36 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
 #include "Dog.hpp"
-
-#include "WrongAnimal.hpp"
+#include "Cat.hpp"
+#include <unistd.h>
 #include "WrongCat.hpp"
 
-#include "Brain.hpp"
-
-int main()
+int main ( void )
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+	Animal *animals[6];
 
-	delete meta;
-	delete j;
-	delete i;
+	for (int i = 0; i < 3; i++)
+		animals[i] = new Dog();
 
-	std::cout << std::endl;
+	for (int i = 3; i < 6; i++)
+	{
+		animals[i] = new Cat();
+		std::cout << animals[i]->getBrain()->getIdea(1) << std::endl;
+		}
 
-	const WrongAnimal *wrongAnimal = new WrongAnimal();
-	wrongAnimal->makeSound();
-	delete wrongAnimal;
+	for (int i = 0; i < 6; i++)
+		delete animals[i];
 
-	std::cout << std::endl;
+	Dog dog1;
+	dog1.getBrain()->setIdea(0, "I love running!");
+	
+	Dog dog2 = dog1;  // Deep copy
 
-	WrongCat* wrongcat = new WrongCat();
-	wrongcat->makeSound();
-	delete wrongcat;
+	// Change dog1's idea
+	dog1.getBrain()->setIdea(0, "I love eating!");
+
+	// Check if dog2's idea remains unchanged
+	std::cout << "Dog1 Brain Idea[0]: " << dog1.getBrain()->getIdea(0) << std::endl;
+	std::cout << "Dog2 Brain Idea[0]: " << dog2.getBrain()->getIdea(0) << std::endl;
+
 
 	return 0;
 }

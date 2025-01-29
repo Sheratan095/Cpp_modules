@@ -34,6 +34,8 @@ Animal	&Animal::operator=(const Animal &rhs)
 		return (*this);
 
 	this->type = rhs.getType();
+
+	delete (this->brain);
 	this->brain = new Brain(*rhs.getBrain());
 
 	return (*this);
