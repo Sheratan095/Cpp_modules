@@ -31,7 +31,7 @@ WrongCat	&WrongCat::operator=(const WrongCat &rhs)
 	if (&rhs == this)
 		return (*this);
 
-	this->type = rhs.getType();
+	WrongAnimal::operator=(rhs);
 
 	return (*this);
 }

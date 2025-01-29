@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 00:24:08 by maceccar          #+#    #+#             */
+/*   Updated: 2025/01/30 00:24:08 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 
 //--------------------CONSTRUCTORS & DESTRUCTOR--------------------
@@ -31,7 +43,7 @@ Cat	&Cat::operator=(const Cat &rhs)
 	if (&rhs == this)
 		return (*this);
 
-	this->type = rhs.getType();
+	Animal::operator=(rhs);
 
 	return (*this);
 }
