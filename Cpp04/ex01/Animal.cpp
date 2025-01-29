@@ -11,16 +11,16 @@ Animal::Animal(): type("Unknown animal")
 
 Animal::Animal(const Animal &animal)
 {
-	*this = animal;
-
 	std::cout << "[ANIMAL] copy constructor called" << std::endl;
+
+	*this = animal;
 }
 
 Animal::~Animal()
 {
-	std::cout << "[ANIMAL] destructor called, animal type: " << this->type << std::endl;
-
 	delete (this->brain);
+
+	std::cout << "[ANIMAL] destructor called, animal type: " << this->type << std::endl;
 }
 
 
