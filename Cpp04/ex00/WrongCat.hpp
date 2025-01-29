@@ -10,9 +10,9 @@ class WrongCat : public WrongAnimal
 		WrongCat(const WrongCat &wrongCat);
 		~WrongCat();
 
-		WrongCat		&operator=(const WrongCat &rhs);
+		WrongCat	&operator=(const WrongCat &rhs);
 
-		void	makeSound() const;
+		void		makeSound() const;
 };
 
 #endif

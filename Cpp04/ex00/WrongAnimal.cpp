@@ -2,7 +2,7 @@
 
 //--------------------CONSTRUCTORS & DESTRUCTOR--------------------
 
-WrongAnimal::WrongAnimal(): type("Unknown")
+WrongAnimal::WrongAnimal(): type("Unknown wrong animal")
 {
 	std::cout << "[WRONGANIMAL] constructor called" << std::endl;
 }
@@ -16,7 +16,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &wrongAnimal)
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "[WRONGANIMAL] destructor called, animal type: " << this->type << std::endl;
+	std::cout << "[WRONGANIMAL] destructor called, wrong animal type: " << this->type << std::endl;
 }
 
 
@@ -48,5 +48,5 @@ std::string		WrongAnimal::getType() const
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "[WRONGANIMAL] unknown sound" << std::endl;
+	std::cout << "[WRONGANIMAL] unknown wrong animal sound" << std::endl;
 }

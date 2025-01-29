@@ -2,7 +2,7 @@
 
 //--------------------CONSTRUCTORS & DESTRUCTOR--------------------
 
-Animal::Animal(): type("Unknown")
+Animal::Animal(): type("Unknown animal")
 {
 	std::cout << "[ANIMAL] constructor called" << std::endl;
 }
@@ -48,5 +48,5 @@ std::string		Animal::getType() const
 
 void	Animal::makeSound() const
 {
-	std::cout << "[ANIMAL] unknown sound" << std::endl;
+	std::cout << "[ANIMAL] unknown animal sound" << std::endl;
 }
