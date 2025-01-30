@@ -4,12 +4,12 @@
 
 AMateria::AMateria(const std::string &type) : type(type)
 {
-	std::cout << "[AMateria] constructor called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] constructor called type= " << this->type << std::endl;
 }
 
 AMateria::AMateria(AMateria const & aMateria)
 {
-	std::cout << "[AMATERIA] copy called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] copy constructor called type= " << this->type << std::endl;
 
 	*this = aMateria;
 }
@@ -24,7 +24,7 @@ AMateria::~AMateria()
 
 AMateria	&AMateria::operator=(AMateria const &rhs)
 {
-	std::cout << "[AMATERIA] destructor called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] asassignment operator called type= " << this->type << std::endl;
 
 	if (&rhs == this)
 		return (*this);
@@ -47,5 +47,5 @@ std::string const	&AMateria::getType() const
 
 void	AMateria::use(ICharacter &target)
 {
-	std::cout << "[AMATERIA] type= " << this->type << " is used by: " << target->getName() << std::endl;
+	std::cout << "[AMATERIA] type= " << this->type << " is used by: " << target.getName() << std::endl;
 }

@@ -2,48 +2,47 @@
 
 //--------------------CONSTRUCTORS & DESTRUCTOR--------------------
 
-AMateria::AMateria(const std::string &type) : type("ice")
+Ice::Ice() : AMateria("ice")
 {
-	std::cout << "[ICE] constructor called type= " << this->type << std::endl;
+	std::cout << "[ICE] constructor called" << std::endl;
 }
 
-AMateria::AMateria(AMateria const & aMateria)
+Ice::Ice(Ice const &ice) : AMateria(ice.getType())
 {
-	std::cout << "[AMateria] copy called type= " << this->type << std::endl;
+	std::cout << "[ICE] copy constructor called" << std::endl;
 
-	*this = aMateria;
+	*this = ice;
 }
 
-AMateria::~AMateria()
+Ice::~Ice()
 {
-	std::cout << "[AMateria] destructor called type= " << this->type << std::endl;
+	std::cout << "[ICE] destructor called" << std::endl;
 }
 
 //--------------------OPERATORS--------------------
 
 
-AMateria	&AMateria::operator=(AMateria const &rhs)
+Ice	&Ice::operator=(Ice const &rhs)
 {
+	std::cout << "[ICE] asassignment operator called" << std::endl;
+
 	if (&rhs == this)
 		return (*this);
 
-	this->type = rhs.getType();
+	AMateria::operator=(rhs);
 
 	return (*this);
-}
-
-//--------------------GETTERS-SETTERS--------------------
-
-
-std::string const	&AMateria::getType() const
-{
-	return (this->type);
-}
+}	
 
 //--------------------METHODS--------------------
 
 
-void	AMateria::use(ICharacter &target)
+void	Ice::use(ICharacter &target)
 {
-	std::cout << "[AMateria] type= " << this->type << " is used by: " << target->getName() << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+
+Ice		*Ice::clone() const
+{
+	return (new Ice(*this));
 }
