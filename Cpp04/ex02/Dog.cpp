@@ -26,7 +26,7 @@ Dog::~Dog()
 
 Dog	&Dog::operator=(const Dog &rhs)
 {
-	std::cout << "[DOG] assignation operator called" << std::endl;
+	std::cout << "[DOG] assignment operator called" << std::endl;
 
 	if (&rhs == this)
 		return (*this);

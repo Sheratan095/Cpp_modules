@@ -28,7 +28,7 @@ AAnimal::~AAnimal()
 
 AAnimal	&AAnimal::operator=(const AAnimal &rhs)
 {
-	std::cout << "[ANIMAL] assignation operator called" << std::endl;
+	std::cout << "[ANIMAL] assignment operator called" << std::endl;
 
 	if (&rhs == this)
 		return (*this);

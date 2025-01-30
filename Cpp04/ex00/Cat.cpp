@@ -38,7 +38,7 @@ Cat::~Cat()
 
 Cat	&Cat::operator=(const Cat &rhs)
 {
-	std::cout << "[CAT] assignation operator called" << std::endl;
+	std::cout << "[CAT] assignment operator called" << std::endl;
 
 	if (&rhs == this)
 		return (*this);
