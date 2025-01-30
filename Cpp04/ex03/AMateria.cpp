@@ -4,12 +4,12 @@
 
 AMateria::AMateria(const std::string &type) : type(type)
 {
-	std::cout << "[AMATERIA] constructor called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] constructor called type = " << this->type << std::endl;
 }
 
 AMateria::AMateria(AMateria const & aMateria)
 {
-	std::cout << "[AMATERIA] copy constructor called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] copy constructor called type = " << this->type << std::endl;
 
 	*this = aMateria;
 }

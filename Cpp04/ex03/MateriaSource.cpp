@@ -65,9 +65,9 @@ void MateriaSource::learnMateria(AMateria *materiaToLearn)
 		//Reach the first avaible poistion
 		if(!this->learnedMaterias[i])
 		{
-			std::cout << "[MATERIASOURCE] learned: " << materiaToLearn->getType() << std::endl;
 			this->learnedMaterias[i] = materiaToLearn;
 
+			std::cout << "[MATERIASOURCE] learned: " << materiaToLearn->getType() << std::endl;
 			return ;
 		}
 	}
