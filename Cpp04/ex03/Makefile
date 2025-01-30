@@ -1,6 +1,6 @@
 NAME = Interface&Recap
 
-CC = c++ -std=c++98 -g -I.
+CC = clang++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
 SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp
