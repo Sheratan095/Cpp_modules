@@ -55,6 +55,9 @@ Character & Character::operator=(Character const &rhs)
 	for (int i = 0; i < this->equippableMaterias; i++)
 	{
 		if (this->inventory[i])
+			delete (this->inventory[i]);
+
+		if (rhs.inventory[i])
 			this->inventory[i] = rhs.inventory[i]->clone();
 		else
 			this->inventory[i] = NULL;
