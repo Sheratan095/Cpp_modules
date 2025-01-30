@@ -24,7 +24,7 @@ AMateria::~AMateria()
 
 AMateria	&AMateria::operator=(AMateria const &rhs)
 {
-	std::cout << "[AMATERIA] asassignment operator called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] assignment operator called type= " << this->type << std::endl;
 
 	if (&rhs == this)
 		return (*this);

@@ -24,7 +24,7 @@ Ice::~Ice()
 
 Ice	&Ice::operator=(Ice const &rhs)
 {
-	std::cout << "[ICE] asassignment operator called" << std::endl;
+	std::cout << "[ICE] assignment operator called" << std::endl;
 
 	if (&rhs == this)
 		return (*this);

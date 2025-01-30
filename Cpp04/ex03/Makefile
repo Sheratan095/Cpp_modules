@@ -3,7 +3,7 @@ NAME = Interface&Recap
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp AMateria.cpp Ice.cpp
+SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp
 
 all: $(NAME)
 
