@@ -16,7 +16,7 @@ AMateria::AMateria(AMateria const & aMateria)
 
 AMateria::~AMateria()
 {
-	std::cout << "[AMATERIA] destructor called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] destructor called type = " << this->type << std::endl;
 }
 
 //--------------------OPERATORS--------------------
@@ -24,7 +24,7 @@ AMateria::~AMateria()
 
 AMateria	&AMateria::operator=(AMateria const &rhs)
 {
-	std::cout << "[AMATERIA] assignment operator called type= " << this->type << std::endl;
+	std::cout << "[AMATERIA] assignment operator called type = " << this->type << std::endl;
 
 	if (&rhs == this)
 		return (*this);

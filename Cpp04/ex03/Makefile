@@ -1,9 +1,9 @@
-NAME = Interface&Recap
+NAME = InterfaceAndRecap
 
 CC = clang++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp
+SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 all: $(NAME)
 

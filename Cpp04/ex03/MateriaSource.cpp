@@ -20,6 +20,12 @@ MateriaSource::MateriaSource(MateriaSource &materiaSource)
 MateriaSource::~MateriaSource()
 {
 	std::cout << "[MATERIASOURCE] destructor called" << std::endl;
+
+	for (int i = 0; i < maxMaterias	; i++)
+	{
+		if (this->learnedMaterias[i])
+			delete (learnedMaterias[i]);
+	}
 }
 
 //--------------------OPERATORS--------------------
