@@ -35,3 +35,44 @@ Form	&Form::operator=(const Form &rhs)
 
 	return (*this);
 }
+
+const std::string	&Form::getName() const
+{
+	return (this->name);
+}
+
+bool	Form::getIsSigned() const
+{
+	return (this->isSigned);
+}
+
+int	Form::getGradeToSign() const
+{
+	return (this->gradeToSign);
+}
+
+int	Form::getGradeToExecute() const
+{
+	return (this->gradeToExecute);
+}
+
+void	Form::beSigned(Bureaucrat &bureaucrat)
+{
+	if (this->isSigned)
+		return ;
+
+	if (bureaucrat.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
+
+	this->isSigned = true;
+}
+
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade is too high");
+}
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade is too low");
+}
