@@ -15,6 +15,14 @@
 
 int main(void)
 {
+	Form form("Form", 150, 150);
+	std::cout << form.getIsSigned() << std::endl;
+	form.beSigned(Bureaucrat("Jack", 75));
+	std::cout << form.getIsSigned() << std::endl;
+
+	Form prova = form;
+	std::cout << form.getIsSigned() << std::endl;
+	
 	std::cout <<  "||||||BUREAUCRAT INSTATIATE TESTS||||||\n"  << std::endl;
 
 	try {
@@ -76,4 +84,20 @@ int main(void)
 	} catch (std::exception &e) {
 		std::cerr <<   "Exception: " << e.what() << std::endl;
 	}
+
+	std::cout << std::endl << std::endl;
+
+	Form formA("FormA", 100, 100);
+	Form formB("FormB", 50, 50);
+
+	std::cout << "Before assignment:" << std::endl;
+	std::cout << "FormA is signed: " << formA.getIsSigned() << std::endl;
+	std::cout << "FormB is signed: " << formB.getIsSigned() << std::endl;
+
+	formA.beSigned(bureaucrat_1);
+	formB = formA;
+
+	std::cout << "After assignment:" << std::endl;
+	std::cout << "FormA is signed: " << formA.getIsSigned() << std::endl;
+	std::cout << "FormB is signed: " << formB.getIsSigned() << std::endl;
 }
