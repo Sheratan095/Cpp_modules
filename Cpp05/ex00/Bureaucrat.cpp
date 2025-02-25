@@ -2,14 +2,14 @@
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 {
+	std::cout << "[BUREAUCRAT] constructor called" << std::endl;
+
 	if (grade < MAX_GRADE)
 		throw GradeTooHighException();
 	if (grade > MIN_GRADE)
 		throw GradeTooLowException();
 
 	this->grade = grade;
-
-	std::cout << "[BUREAUCRAT] constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat &bureaucrat) : name(bureaucrat.getName()), grade(bureaucrat.getGrade())
