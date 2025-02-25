@@ -25,19 +25,19 @@ class Bureaucrat
 		void incrementGrade();
 		void decrementGrade();
 
-	// NETEST CLASSES
-	class GradeTooHighException : public std::exception
-	{
-		// throw() is a specifier that tells the compiler that the
-		//		function does not throw exceptions .
-		// what() is a virtual function inherited from std::exception.
-		const char	*what() const throw();
-	};
+		// NETEST CLASSES
+		class GradeTooHighException : public std::exception
+		{
+			// throw() is a specifier that tells the compiler that the
+			//		function does not throw exceptions .
+			// what() is a virtual function inherited from std::exception.
+			const char	*what() const throw();
+		};
 
-	class GradeTooLowException : public std::exception
-	{
-		const char	*what() const throw();
-	};
+		class GradeTooLowException : public std::exception
+		{
+			const char	*what() const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
