@@ -2,6 +2,9 @@
 # define FORM_HPP
 
 #include <iostream>
+
+class Form;
+
 #include "Bureaucrat.hpp"
 
 #define MAX_GRADE 1
@@ -27,7 +30,7 @@ class Form
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
 
-		void	beSigned(Bureaucrat &bureaucrat);
+		void	beSigned(const Bureaucrat &bureaucrat);
 
 		class GradeTooHighException : public std::exception
 		{
@@ -39,5 +42,7 @@ class Form
 			const char	*what() const throw();
 		};
 };
+
+std::ostream &operator<<(std::ostream &out, Form const &form);
 
 #endif

@@ -47,7 +47,7 @@ int	Bureaucrat::getGrade() const
 }
 
 // Check it the max grade is reached.
-void Bureaucrat::incrementGrade()
+void	Bureaucrat::incrementGrade()
 {
 	if (this->grade == MAX_GRADE)
 		throw GradeTooHighException();
@@ -56,12 +56,26 @@ void Bureaucrat::incrementGrade()
 }
 
 // Check if the min grade is reached.
-void Bureaucrat::decrementGrade()
+void	Bureaucrat::decrementGrade()
 {
 	if (this->grade == MIN_GRADE)
 		throw GradeTooLowException();
 
 	this->grade++;
+}
+
+void	Bureaucrat::signForm(Form &form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << *this << " signed " << form << "\n";
+	}
+	catch (std::exception &ex)
+	{
+		std::cout << *this << " couldn't sign " << form.getName();
+		std::cout << " because " << ex.what() << std::endl;
+	}
 }
 
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
