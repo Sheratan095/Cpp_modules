@@ -12,6 +12,11 @@
 
 #include "Form.hpp"
 
+Form::Form(): name("default form"), gradeToSign(MIN_GRADE), gradeToExecute(MIN_GRADE)
+{
+	std::cout << "[FORM] default constructor called" << std::endl;
+}
+
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
 	std::cout << "[FORM] constructor called" << std::endl;
@@ -93,12 +98,13 @@ const char	*Form::GradeTooLowException::what() const throw()
 std::ostream &operator<<(std::ostream &out, Form const &form)
 {
 	out << "Form " << form.getName();
-	out << " level :" << form.getGradeToSign() << " ";
+	out << " grade to sign :" << form.getGradeToSign();
 	out << " grade to execute :" << form.getGradeToExecute();
 	out << " is ";
 	if (form.getIsSigned())
 		out << "signed" << std::endl;
 	else
 		out << "not signed" << std::endl;
-	return out;
+
+	return (out);
 }
