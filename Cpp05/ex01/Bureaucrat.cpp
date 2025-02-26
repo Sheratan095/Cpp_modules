@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 16:22:54 by maceccar          #+#    #+#             */
+/*   Updated: 2025/02/26 16:22:54 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -26,7 +38,7 @@ Bureaucrat::~Bureaucrat()
 // the check is done on &rhs because it is a reference to the object.
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &rhs)
 {
-	std::cout << "[BUREAUCRAT] assignation operator called" << std::endl;
+	std::cout << "[BUREAUCRAT] copy assignment operator called" << std::endl;
 
 	if (this == &rhs)
 		return (*this);

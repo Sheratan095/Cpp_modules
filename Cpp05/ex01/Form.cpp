@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 16:22:54 by maceccar          #+#    #+#             */
+/*   Updated: 2025/02/26 16:22:54 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Form.hpp"
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
@@ -12,9 +24,10 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), g
 	this->isSigned = false;
 }
 
-//TO DO test if isSigned is set to false
 Form::Form(Form &form): name(form.getName()), gradeToSign(form.getGradeToSign()), gradeToExecute(form.getGradeToExecute())
 {
+	this->isSigned = false;
+
 	std::cout << "[FORM] copy constructor called" << std::endl;
 }
 
@@ -26,7 +39,7 @@ Form::~Form()
 // Modify just the isSigned attribute because all the other attributes are const.
 Form	&Form::operator=(const Form &rhs)
 {
-	std::cout << "[FORM] assignation operator called" << std::endl;
+	std::cout << "[FORM] copy assignment operator called" << std::endl;
 
 	if (this == &rhs)
 		return (*this);

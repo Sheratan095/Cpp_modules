@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 12:34:05 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/06/05 12:38:15 by lmicheli         ###   ########.fr       */
+/*   Created: 2024/06/05 12:34:05 by maceccar          #+#    #+#             */
+/*   Updated: 2025/02/26 16:24:51 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,22 @@
 int main(void)
 {
 	Form form("Form", 150, 150);
-	std::cout << form.getIsSigned() << std::endl;
-	form.beSigned(Bureaucrat("Jack", 75));
+
 	std::cout << form.getIsSigned() << std::endl;
 
-	Form prova = form;
+	form.beSigned(Bureaucrat("Jack", 75));
+
 	std::cout << form.getIsSigned() << std::endl;
+
+	// in this case the copy constructor is called and not the copy assignment operator
+	// because the object is not already created.
+	Form prova = form;
+	std::cout << prova.getIsSigned() << std::endl;
+
+	// in this the copy assignment operator is called because the object is already created.
+	Form prova2("prova", 100, 100);
+	prova2 = form;
+	std::cout << prova2.getIsSigned() << std::endl;
 	
 	std::cout <<  "||||||BUREAUCRAT INSTATIATE TESTS||||||\n"  << std::endl;
 
