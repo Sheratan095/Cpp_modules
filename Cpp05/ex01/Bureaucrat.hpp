@@ -15,8 +15,6 @@
 
 #include <iostream>
 
-class Bureaucrat;
-
 #include "Form.hpp"
 
 #define MAX_GRADE 1

@@ -14,13 +14,13 @@
 # define FORM_HPP
 
 #include <iostream>
-
-class Form;
-
 #include "Bureaucrat.hpp"
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150
+
+// Forward declaration.
+class Bureaucrat;
 
 class Form
 {

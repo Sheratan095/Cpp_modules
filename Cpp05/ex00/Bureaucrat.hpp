@@ -15,15 +15,8 @@
 
 #include <iostream>
 
-class Bureaucrat;
-
-#include "Form.hpp"
-
 #define MAX_GRADE 1
 #define MIN_GRADE 150
-
-// Forward declaration.
-class Form;
 
 class Bureaucrat
 {
