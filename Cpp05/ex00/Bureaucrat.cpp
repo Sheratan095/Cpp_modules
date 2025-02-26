@@ -12,6 +12,11 @@
 
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(): name("default bureaucrat"), grade(MIN_GRADE)
+{
+	std::cout << "[BUREAUCRAT] default constructor called" << std::endl;
+}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 {
 	std::cout << "[BUREAUCRAT] constructor called" << std::endl;
@@ -35,7 +40,7 @@ Bureaucrat::~Bureaucrat()
 }
 
 // Not changing tha name because it is a const.
-// the check is done on &rhs because it is a reference to the object.
+// The check is done on &rhs because it is a reference to the object.
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &rhs)
 {
 	std::cout << "[BUREAUCRAT] copy assignment operator called" << std::endl;
@@ -59,7 +64,7 @@ int	Bureaucrat::getGrade() const
 }
 
 // Check it the max grade is reached.
-void Bureaucrat::incrementGrade()
+void	Bureaucrat::incrementGrade()
 {
 	if (this->grade == MAX_GRADE)
 		throw GradeTooHighException();
@@ -68,7 +73,7 @@ void Bureaucrat::incrementGrade()
 }
 
 // Check if the min grade is reached.
-void Bureaucrat::decrementGrade()
+void	Bureaucrat::decrementGrade()
 {
 	if (this->grade == MIN_GRADE)
 		throw GradeTooLowException();
