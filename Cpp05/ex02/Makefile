@@ -15,6 +15,7 @@ clean:
 	@echo "$(RED)[$(NAME)]:\t CLEAN$(RESET)"
 
 fclean: clean
+	@rm -f *_shrubbery
 	@rm -f $(NAME)
 	@echo "$(RED)[$(NAME)]:\t FCLEAN$(RESET)"
 
