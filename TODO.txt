@@ -1,0 +1,2 @@
+[] Add default constructor EVERYWHERE
+[] Change brain in cpp04 cat/dog -> AAnimal
