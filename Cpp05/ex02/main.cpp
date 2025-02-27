@@ -13,7 +13,16 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+static void	testShrubberyCreationForm();
+
 int main(void)
+{
+	testShrubberyCreationForm();
+
+	return 0;
+}
+
+static void	testShrubberyCreationForm()
 {
 	Bureaucrat bob("Bob", 1);
 	Bureaucrat alice("Alice", 150);
@@ -54,6 +63,4 @@ int main(void)
 	} catch (std::exception &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-
-	return 0;
 }
