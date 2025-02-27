@@ -11,8 +11,49 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
+	Bureaucrat bob("Bob", 140);
+	Bureaucrat alice("Alice", 150);
+
+	ShrubberyCreationForm form1("Home");
+	ShrubberyCreationForm form2("Garden");
+
+	std::cout << "\n||||||SHRUBBERY CREATION FORM TESTS||||||\n" << std::endl;
+
+	try {
+		std::cout << "Trying to execute form1 without signing:" << std::endl;
+		form1.execute(bob);
+	} catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "Signing form1 with Bob:" << std::endl;
+		form1.beSigned(bob);
+		std::cout << "Executing form1 with Bob:" << std::endl;
+		form1.execute(bob);
+	} catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "Trying to execute form2 with Alice (insufficient grade):" << std::endl;
+		form2.beSigned(alice);
+		form2.execute(alice);
+	} catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "Signing form2 with Bob and executing:" << std::endl;
+		form2.beSigned(bob);
+		form2.execute(bob);
+	} catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	return 0;
 }
