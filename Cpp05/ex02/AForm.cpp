@@ -12,14 +12,14 @@
 
 #include "AForm.hpp"
 
-AForm::AForm(): name("default form"), gradeToSign(MIN_GRADE), gradeToExecute(MIN_GRADE)
+AForm::AForm(): name("default AForm"), gradeToSign(MIN_GRADE), gradeToExecute(MIN_GRADE)
 {
-	std::cout << "[FORM] default constructor called" << std::endl;
+	std::cout << "[AFORM] default constructor called" << std::endl;
 }
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute): name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
-	std::cout << "[FORM] constructor called" << std::endl;
+	std::cout << "[AFORM] constructor called" << std::endl;
 
 	if (gradeToSign < MAX_GRADE || gradeToExecute < MAX_GRADE)
 		throw GradeTooHighException();
@@ -29,22 +29,22 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExecute): name(name),
 	this->isSigned = false;
 }
 
-AForm::AForm(AForm &form): name(form.getName()), gradeToSign(form.getGradeToSign()), gradeToExecute(form.getGradeToExecute())
+AForm::AForm(const AForm &aForm): name(aForm.getName()), gradeToSign(aForm.getGradeToSign()), gradeToExecute(aForm.getGradeToExecute())
 {
 	this->isSigned = false;
 
-	std::cout << "[FORM] copy constructor called" << std::endl;
+	std::cout << "[AFORM] copy constructor called" << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "[FORM] destructor called" << std::endl;
+	std::cout << "[AFORM] destructor called" << std::endl;
 }
 
 // Modify just the isSigned attribute because all the other attributes are const.
 AForm	&AForm::operator=(const AForm &rhs)
 {
-	std::cout << "[FORM] copy assignment operator called" << std::endl;
+	std::cout << "[AFORM] copy assignment operator called" << std::endl;
 
 	if (this == &rhs)
 		return (*this);
@@ -100,13 +100,13 @@ const char *AForm::FormNotSignedException::what() const throw()
 	return ("AForm is not signed");
 }
 
-std::ostream &operator<<(std::ostream &out, AForm const &form)
+std::ostream &operator<<(std::ostream &out, const AForm &aForm)
 {
-	out << "Form " << form.getName();
-	out << " grade to sign :" << form.getGradeToSign();
-	out << " grade to execute :" << form.getGradeToExecute();
+	out << "AForm " << aForm.getName();
+	out << " grade to sign :" << aForm.getGradeToSign();
+	out << " grade to execute :" << aForm.getGradeToExecute();
 	out << " is ";
-	if (form.getIsSigned())
+	if (aForm.getIsSigned())
 		out << "signed" << std::endl;
 	else
 		out << "not signed" << std::endl;

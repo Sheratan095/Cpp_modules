@@ -1,21 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:22:54 by maceccar          #+#    #+#             */
-/*   Updated: 2025/02/26 16:22:54 by maceccar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Form.hpp"
-
-Form::Form(): name("default form"), gradeToSign(MIN_GRADE), gradeToExecute(MIN_GRADE)
-{
-	std::cout << "[FORM] default constructor called" << std::endl;
-}
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
@@ -29,10 +12,9 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), g
 	this->isSigned = false;
 }
 
+//TO DO test if isSigned is set to false
 Form::Form(Form &form): name(form.getName()), gradeToSign(form.getGradeToSign()), gradeToExecute(form.getGradeToExecute())
 {
-	this->isSigned = false;
-
 	std::cout << "[FORM] copy constructor called" << std::endl;
 }
 
@@ -44,7 +26,7 @@ Form::~Form()
 // Modify just the isSigned attribute because all the other attributes are const.
 Form	&Form::operator=(const Form &rhs)
 {
-	std::cout << "[FORM] copy assignment operator called" << std::endl;
+	std::cout << "[FORM] assignation operator called" << std::endl;
 
 	if (this == &rhs)
 		return (*this);
@@ -85,12 +67,12 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 	this->isSigned = true;
 }
 
-const char	*Form::GradeTooHighException::what() const throw()
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
 }
 
-const char	*Form::GradeTooLowException::what() const throw()
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low");
 }
@@ -98,13 +80,12 @@ const char	*Form::GradeTooLowException::what() const throw()
 std::ostream &operator<<(std::ostream &out, Form const &form)
 {
 	out << "Form " << form.getName();
-	out << " grade to sign :" << form.getGradeToSign();
+	out << " level :" << form.getGradeToSign() << " ";
 	out << " grade to execute :" << form.getGradeToExecute();
 	out << " is ";
 	if (form.getIsSigned())
 		out << "signed" << std::endl;
 	else
 		out << "not signed" << std::endl;
-
-	return (out);
+	return out;
 }

@@ -33,7 +33,7 @@ class AForm
 	public:
 		AForm();
 		AForm(std::string name, int gradeToSign, int gradeToExecute);
-		AForm(AForm &form);
+		AForm(const AForm &src); // Add this line
 		~AForm();
 
 		AForm	&operator=(const AForm &rhs);
