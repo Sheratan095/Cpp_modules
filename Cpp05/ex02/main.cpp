@@ -15,7 +15,7 @@
 
 int main(void)
 {
-	Bureaucrat bob("Bob", 140);
+	Bureaucrat bob("Bob", 1);
 	Bureaucrat alice("Alice", 150);
 
 	ShrubberyCreationForm form1("Home");
@@ -34,7 +34,7 @@ int main(void)
 		std::cout << "Signing form1 with Bob:" << std::endl;
 		form1.beSigned(bob);
 		std::cout << "Executing form1 with Bob:" << std::endl;
-		form1.execute(bob);
+		bob.executeForm(form1);
 	} catch (std::exception &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
@@ -50,7 +50,7 @@ int main(void)
 	try {
 		std::cout << "Signing form2 with Bob and executing:" << std::endl;
 		form2.beSigned(bob);
-		form2.execute(bob);
+		bob.executeForm(form1);
 	} catch (std::exception &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
