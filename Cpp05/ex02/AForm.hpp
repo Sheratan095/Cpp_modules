@@ -43,7 +43,12 @@ class AForm
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
 
-		void	beSigned(const Bureaucrat &bureaucrat);
+		virtual void	beSigned(const Bureaucrat &bureaucrat);
+
+		// Pure virtual function. (not implemented in base class).
+		//	must be overridden in derived classes.
+		// It makes the class abstract.
+		virtual void	execute(const Bureaucrat &executor) const = 0;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -51,6 +56,11 @@ class AForm
 		};
 
 		class GradeTooLowException : public std::exception
+		{
+			const char	*what() const throw();
+		};
+
+		class FormNotSignedException : public std::exception
 		{
 			const char	*what() const throw();
 		};
