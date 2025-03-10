@@ -24,6 +24,7 @@ class ClapTrap
 		unsigned int	attackDamage;
 
 	public:
+		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &clapTrap); //copy constructor
 		~ClapTrap();

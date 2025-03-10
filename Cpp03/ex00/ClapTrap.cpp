@@ -14,6 +14,11 @@
 
 //---------------CONSTRUCTORS - DESTRUCTORS---------------
 
+ClapTrap::ClapTrap(): name("default claptrap"), energyPoints(10), hitPoints(10), attackDamage(10)
+{
+	std::cout << "[ClapTrap] Constructor called, name: " << this->name << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name): name(name), energyPoints(10), hitPoints(10), attackDamage(10)
 {
 	std::cout << "[ClapTrap] Constructor called, name: " << this->name << std::endl;
