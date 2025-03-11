@@ -17,8 +17,9 @@ Intern::~Intern()
 Intern	&Intern::operator=(const Intern &rhs)
 {
 	if (this == &rhs)
-		return *this;
-	return *this;
+		return (*this);
+
+	return (*this);
 }
 
 AForm	*Intern::makeForm(std::string formName, std::string target)
