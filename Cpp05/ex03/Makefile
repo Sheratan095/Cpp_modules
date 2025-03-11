@@ -1,4 +1,4 @@
-NAME = NoYouNeedForm28BNot28C
+NAME = AtLeastThisBeatsCoffeeMaking
 
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
