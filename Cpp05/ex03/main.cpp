@@ -19,36 +19,36 @@
 int main(void)
 {
 	Intern someRandomIntern;
-	AForm* form;
+	AForm* rrf;
 
 	std::cout << "\n||||||INTERN FORM CREATION TESTS||||||\n" << std::endl;
 
-	form = someRandomIntern.makeForm("robotomy request", "Bender");
-	if (form)
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	if (rrf)
 	{
-		std::cout << *form << std::endl;
-		delete (form);
+		std::cout << *rrf << std::endl;
+		delete (rrf);
 	}
 
-	form = someRandomIntern.makeForm("shrubbery creation", "Garden");
-	if (form)
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Garden");
+	if (rrf)
 	{
-		std::cout << *form << std::endl;
-		delete (form);
+		std::cout << *rrf << std::endl;
+		delete (rrf);
 	}
 
-	form = someRandomIntern.makeForm("presidential pardon", "Alice");
-	if (form)
+	rrf = someRandomIntern.makeForm("presidential pardon", "Alice");
+	if (rrf)
 	{
-		std::cout << *form << std::endl;
-		delete (form);
+		std::cout << *rrf << std::endl;
+		delete (rrf);
 	}
 
-	form = someRandomIntern.makeForm("unknown form", "Target");
-	if (form)
+	rrf = someRandomIntern.makeForm("unknown rrf", "Target");
+	if (rrf)
 	{
-		std::cout << *form << std::endl;
-		delete (form);
+		std::cout << *rrf << std::endl;
+		delete (rrf);
 	}
 
 	return (0);
