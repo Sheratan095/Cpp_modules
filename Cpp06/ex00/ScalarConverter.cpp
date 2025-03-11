@@ -19,3 +19,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 
 	return (*this);
 }
+
+void	ScalarConverter::convert(const std::string &rawValue)
+{
+	std::cout << "rawValue: " << rawValue << std::endl;
+}

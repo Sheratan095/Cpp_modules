@@ -1,14 +1,18 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
+#include <iostream>
+
 class ScalarConverter
 {
 	public:
-		static void	convert(const char *str);
+		static void	convert(const std::string &rawValue);
 
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &other);
-		~ScalarConverter();
+
+		// Used to make the class abstract
+		virtual	~ScalarConverter() = 0;
 
 		ScalarConverter &operator=(const ScalarConverter &rhs);
 };
