@@ -2,18 +2,15 @@
 
 #include <iostream>
 
-int main(/*int argc, char **argv*/)
+int main(int argc, char **argv)
 {
-	// ScalarConverter sc;
-	std::string	test = "nan";
+	if (argc != 2)
+	{
+		std::cout << "Wrong number of arguments" << std::endl;
+		return (1);
+	}
 
-	// if (argc != 2)
-	// {
-		// std::cout << "Usage: ./convert [value]" << std::endl;
-		// return (1);
-	// }
-
-	ScalarConverter::convert(test);
+	ScalarConverter::convert(argv[1]);
 
 	return (0);
 }
