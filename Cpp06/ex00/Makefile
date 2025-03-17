@@ -21,7 +21,7 @@ fclean: clean
 
 re: fclean all
 
-arg =
+arg = +inff
 
 test: all
 	./$(NAME) $(arg)
