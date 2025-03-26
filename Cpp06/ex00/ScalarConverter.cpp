@@ -20,20 +20,23 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 	return (*this);
 }
 
-void	printResult(const std::string &charVal, const std::string &intVal, const std::string &floatVal,
-								const std::string &doubleVal)
-{
-	std::cout << "char" << ": " << charVal << std::endl;
-	std::cout << "int" << ": " << intVal << std::endl;
-	std::cout << "float" << ": " << floatVal << std::endl;
-	std::cout << "double" << ": " << doubleVal << std::endl;
-}
+// void	printResult(const std::string &charVal, const std::string &intVal, const std::string &floatVal,
+// 								const std::string &doubleVal)
+// {
+// 	std::cout << "char" << ": " << charVal << std::endl;
+// 	std::cout << "int" << ": " << intVal << std::endl;
+// 	std::cout << "float" << ": " << floatVal << std::endl;
+// 	std::cout << "double" << ": " << doubleVal << std::endl;
+// }
 
-bool	checkForSpeudoliteral(const std::string &rawValue)
+bool	checkForPseudoliteral(const std::string &rawValue)
 {
 	if (rawValue == "nan" || rawValue == "nanf")
 	{
-		printResult("impossible", "impossible", "nanf", "nan");
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
 		return (true);
 	}
 
@@ -41,14 +44,10 @@ bool	checkForSpeudoliteral(const std::string &rawValue)
 	{
 		const bool isInfiniteFloat = rawValue == "+inff" || rawValue == "-inff";
 
-		printResult(
-			"impossible",
-			"impossible",
-							//? +/-inff : +/-inff
-			isInfiniteFloat ? rawValue : rawValue + "f", //Used to add f if needed
-							//? +/-inf : +/-inf
-			isInfiniteFloat ? rawValue.substr(0, 4) : rawValue //Used to remove f if needed
-		);
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << (isInfiniteFloat ? rawValue : rawValue + "f") << std::endl;
+		std::cout << "double: " << (isInfiniteFloat ? rawValue.substr(0, 4) : rawValue) << std::endl;
 		return (true);
 	}
 
