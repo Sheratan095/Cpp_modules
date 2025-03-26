@@ -150,9 +150,26 @@ int	getType(const std::string &rawvalue)
 void	convertChar(const std::string &str)
 {
 	char	c = str[0];
-	int		i = static_cast<int>(c);
 
-	printResult(c, i, static_cast<float>(c) , static_cast<double>(c));
+	std::cout << "char: " << c << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+void	convertFloat(const std::string &str)
+{
+
+}
+
+void	convertDouble(const std::string &str)
+{
+
+}
+
+void	convertInt(const std::string &str)
+{
+
 }
 
 
@@ -161,19 +178,23 @@ void	ScalarConverter::convert(const std::string &rawValue)
 	if (!isStringValid(rawValue))
 		return ;
 
-	if (checkForSpeudoliteral(rawValue))
+	if (checkForPseudoliteral(rawValue))
 		return ;
 
 	int	type = getType(rawValue);
 	switch (type)
 	{
-		case 1:
+		case 1: // CHAR
+			convertChar(rawValue);
 			break;
-		case 2:
+		case 2: // FLOAT
+			convertDouble(rawValue);
 			break;
-		case 3:
+		case 3: // DOUBLE
+			convertFloat(rawValue);
 			break;
-		case 4:
+		case 4: // INT
+			convertInt(rawValue);
 			break;
 
 		// it works both for unknown(-1) and default
