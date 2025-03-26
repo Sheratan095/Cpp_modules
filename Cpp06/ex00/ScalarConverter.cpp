@@ -20,38 +20,17 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 	return (*this);
 }
 
-// void	printResult(const std::string &charVal, const std::string &intVal, const std::string &floatVal,
-// 								const std::string &doubleVal)
-// {
-// 	std::cout << "char" << ": " << charVal << std::endl;
-// 	std::cout << "int" << ": " << intVal << std::endl;
-// 	std::cout << "float" << ": " << floatVal << std::endl;
-// 	std::cout << "double" << ": " << doubleVal << std::endl;
-// }
+//----------------------------------------------------------------------------------------------
 
-bool	checkForPseudoliteral(const std::string &rawValue)
+int	getPrecision(const std::string& literal)
 {
-	if (rawValue == "nan" || rawValue == "nanf")
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
-		return (true);
-	}
+	int		precision = 1;
+	size_t	decimalPos = literal.find('.');
 
-	if (rawValue == "+inf" || rawValue == "-inf" || rawValue == "+inff" || rawValue == "-inff")
-	{
-		const bool isInfiniteFloat = rawValue == "+inff" || rawValue == "-inff";
-
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << (isInfiniteFloat ? rawValue : rawValue + "f") << std::endl;
-		std::cout << "double: " << (isInfiniteFloat ? rawValue.substr(0, 4) : rawValue) << std::endl;
-		return (true);
-	}
-
-	return (false);
+	if (decimalPos != std::string::npos)
+		precision = static_cast<int>(literal.length() - decimalPos -
+			(literal.find('f') != std::string::npos ? 2 : 1));
+	return precision;
 }
 
 bool	strContainsJust(const std::string &str, const std::string &allowedChars)
@@ -147,6 +126,31 @@ int	getType(const std::string &rawvalue)
 	return (type);
 }
 
+bool	checkForPseudoliteral(const std::string &rawValue)
+{
+	if (rawValue == "nan" || rawValue == "nanf")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+		return (true);
+	}
+
+	if (rawValue == "+inf" || rawValue == "-inf" || rawValue == "+inff" || rawValue == "-inff")
+	{
+		const bool isInfiniteFloat = rawValue == "+inff" || rawValue == "-inff";
+
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << (isInfiniteFloat ? rawValue : rawValue + "f") << std::endl;
+		std::cout << "double: " << (isInfiniteFloat ? rawValue.substr(0, 4) : rawValue) << std::endl;
+		return (true);
+	}
+
+	return (false);
+}
+
 void	convertChar(const std::string &str)
 {
 	char	c = str[0];
@@ -159,19 +163,64 @@ void	convertChar(const std::string &str)
 
 void	convertFloat(const std::string &str)
 {
+	// Cast to float
+	float f = std::strtof(str.c_str(), NULL);
+
+	// Check if the float is in the range of displayable characters
+	if (f >= 32 && f <= 126)
+		std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+
+	// Check if the float is in the range of integers
+	if (f <= static_cast<float>(INT_MAX) && f >= static_cast<float>(INT_MIN))
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
+
+	// std::Fixed sets the floatfield format flag for the str stream to fixed.
+	// 	When floatfield is set to fixed, floating-point values are written using fixed-point notation: 
+	//		the value is represented with exactly as many digits in the decimal part as specified by the precision field (setprecision())
+	std::cout << "float: " << std::fixed << std::setprecision(getPrecision(str)) << f << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(getPrecision(str)) << static_cast<double>(f) << std::endl;
 
 }
 
 void	convertDouble(const std::string &str)
 {
+	// Cast to float
+	double d = std::strtod(str.c_str(), NULL);
 
+	// Check if the float is in the range of displayable characters
+	if (d >= 32 && d <= 126)
+		std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+
+	// Check if the int is in the range of integers
+	if (d <= INT_MAX && d >= INT_MIN)
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
+
+	std::cout << "float: "<< std::fixed << std::setprecision(getPrecision(str)) << static_cast<float>(d) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(getPrecision(str)) << d << std::endl;
 }
 
 void	convertInt(const std::string &str)
 {
+	int i = std::atoi(str.c_str());
 
+	// Check if the float is in the range of displayable characters
+	if (i >= 32 && i <= 126)
+		std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+
+	std::cout << "int: " << i << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(getPrecision(str)) << static_cast<float>(i) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(getPrecision(str)) << static_cast<double>(i) << std::endl;
 }
-
 
 void	ScalarConverter::convert(const std::string &rawValue)
 {
