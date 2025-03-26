@@ -22,15 +22,27 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 
 //----------------------------------------------------------------------------------------------
 
-int	getPrecision(const std::string& literal)
+int	getPrecision(const std::string& rawValue)
 {
+	// Default precision is 1
 	int		precision = 1;
-	size_t	decimalPos = literal.find('.');
 
-	if (decimalPos != std::string::npos)
-		precision = static_cast<int>(literal.length() - decimalPos -
-			(literal.find('f') != std::string::npos ? 2 : 1));
-	return precision;
+	// Find the position of the decimal point
+	size_t	dotPosition = rawValue.find('.');
+
+	// if the decimal point is found, calculate the precision
+	if (dotPosition != std::string::npos)
+	{
+		// Retrieve the number of digits after the decimal point
+		//	len - deciamal part - 1 (for the dot)
+		precision = static_cast<int>(rawValue.length() - dotPosition - 1);
+
+		// If the string ends with f
+		//		=> remove 1 from the precision
+		precision -= static_cast<int>(rawValue.find('f') != std::string::npos ? 1 : 0);
+	}
+
+	return (precision);
 }
 
 bool	strContainsJust(const std::string &str, const std::string &allowedChars)
@@ -224,10 +236,10 @@ void	convertInt(const std::string &str)
 
 void	ScalarConverter::convert(const std::string &rawValue)
 {
-	if (!isStringValid(rawValue))
+	if (checkForPseudoliteral(rawValue))
 		return ;
 
-	if (checkForPseudoliteral(rawValue))
+	if (!isStringValid(rawValue))
 		return ;
 
 	int	type = getType(rawValue);
