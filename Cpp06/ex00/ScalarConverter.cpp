@@ -78,12 +78,20 @@ bool	isStringValid(const std::string &rawValue)
 		return (false);
 	}
 
-	if (rawValue.size() == 1 && !isdigit(rawValue[0]))
+	if (rawValue.size() == 1)
 		return (true);
 
 	//Check the string contains the 'special' characters only once
 	if (findOccurrences(rawValue, '.') > 1 || findOccurrences(rawValue, 'f') > 1
 		|| findOccurrences(rawValue, '-') > 1 || findOccurrences(rawValue, '+') > 1)
+	{
+		std::cerr << "Error: invalid string" << std::endl;
+		return (false);
+	}
+
+	//Check the string contains the sign only at the beginning
+	if ((findOccurrences(rawValue, '-') == 1 && rawValue[0] != '-') ||
+		(findOccurrences(rawValue, '+') == 1 && rawValue[0] != '+'))
 	{
 		std::cerr << "Error: invalid string" << std::endl;
 		return (false);
