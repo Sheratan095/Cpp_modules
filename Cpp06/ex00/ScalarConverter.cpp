@@ -56,6 +56,19 @@ bool	strContainsJust(const std::string &str, const std::string &allowedChars)
 	return (true);
 }
 
+int	findOccurrences(const std::string &str, char c)
+{
+	int	count = 0;
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str[i] == c)
+			count++;
+	}
+
+	return (count);
+}
+
 bool	isStringValid(const std::string &rawValue)
 {
 	//Check the string is empty or contains only spaces
@@ -67,6 +80,14 @@ bool	isStringValid(const std::string &rawValue)
 
 	if (rawValue.size() == 1 && !isdigit(rawValue[0]))
 		return (true);
+
+	//Check the string contains the 'special' characters only once
+	if (findOccurrences(rawValue, '.') > 1 || findOccurrences(rawValue, 'f') > 1
+		|| findOccurrences(rawValue, '-') > 1 || findOccurrences(rawValue, '+') > 1)
+	{
+		std::cerr << "Error: invalid string" << std::endl;
+		return (false);
+	}
 
 	//Check the string contains only valid characters
 	if (strContainsJust(rawValue, "0123456789.-+f") == false)
