@@ -157,7 +157,7 @@ int	getType(const std::string &rawValue)
 	//		=> it's an int
 	if (rawValue[i] == 'f')
 		type = 2;
-	else if (type != 3 && rawValue.size() < 13)
+	else if (type != 3) // Not animore check for max length of an int because it's done in int conversion 
 		type = 4;
 
 	return (type);
