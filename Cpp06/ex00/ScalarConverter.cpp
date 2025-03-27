@@ -65,6 +65,9 @@ bool	isStringValid(const std::string &rawValue)
 		return (false);
 	}
 
+	if (rawValue.size() == 1 && !isdigit(rawValue[0]))
+		return (true);
+
 	//Check the string contains only valid characters
 	if (strContainsJust(rawValue, "0123456789.-+f") == false)
 	{
@@ -97,24 +100,24 @@ bool	isStringValid(const std::string &rawValue)
 	INT:	4
 	UNKNOWN	-1
 */
-int	getType(const std::string &rawvalue)
+int	getType(const std::string &rawValue)
 {
 	int	i = 0;
 	int	type = -1;
 
-	if (rawvalue.size() == 1 && isalpha(rawvalue[0]))
+	if (rawValue.size() == 1 && !isdigit(rawValue[0]))
 		return (1);
 
 	// skip sign
-	while (rawvalue[i] == '-' || rawvalue[i] == '+')
+	while (rawValue[i] == '-' || rawValue[i] == '+')
 		i++;
 	// skip digits
-	while (rawvalue[i] >= '0' && rawvalue[i] <= '9')
+	while (rawValue[i] >= '0' && rawValue[i] <= '9')
 		i++;
 
 	// if contains a dot
 	//	=> it's a double or a float
-	if (rawvalue[i] == '.')
+	if (rawValue[i] == '.')
 	{
 		// set type to double beacasue the float is checked later
 		type = 3;
@@ -123,7 +126,7 @@ int	getType(const std::string &rawvalue)
 		i++;
 
 		// skip digits again to skip the decimal part
-		while (rawvalue[i] >= '0' && rawvalue[i] <= '9')
+		while (rawValue[i] >= '0' && rawValue[i] <= '9')
 			i++;
 	}
 
@@ -131,9 +134,9 @@ int	getType(const std::string &rawvalue)
 	//		=> it's a float
 	// else if the type is not double and the length is less than 13 (max len of int)
 	//		=> it's an int
-	if (rawvalue[i] == 'f')
+	if (rawValue[i] == 'f')
 		type = 2;
-	else if (type != 3 && rawvalue.size() < 13)
+	else if (type != 3 && rawValue.size() < 13)
 		type = 4;
 
 	return (type);

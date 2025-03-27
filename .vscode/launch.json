@@ -9,7 +9,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/Cpp06/ex00/ConversionOfScalarTypes",
-		"args": ["2147483648"],
+		"args": ["+"],
 		"stopAtEntry": false,
 		"cwd": "${fileDirname}",
 		"environment": [],
