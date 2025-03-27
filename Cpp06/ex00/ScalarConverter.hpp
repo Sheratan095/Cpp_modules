@@ -17,7 +17,7 @@ class ScalarConverter
 		// Used to make the class abstract
 		virtual	~ScalarConverter() = 0;
 
-		ScalarConverter &operator=(const ScalarConverter &rhs);
+		ScalarConverter	&operator=(const ScalarConverter &rhs);
 };
 
 #endif
