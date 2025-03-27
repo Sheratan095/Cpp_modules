@@ -50,6 +50,8 @@
 		"sstream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"numbers": "cpp",
+		"cinttypes": "cpp"
 	}
 }

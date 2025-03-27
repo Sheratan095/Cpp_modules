@@ -24,8 +24,9 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 
 int	getPrecision(const std::string& rawValue)
 {
-	// Default precision is 1
-	int		precision = 1;
+	// Default precision is 0
+	//	if precision is 1: 42 => 42.0, with 0 precision: 42 => 42
+	int		precision = 0;
 
 	// Find the position of the decimal point
 	size_t	dotPosition = rawValue.find('.');
@@ -221,6 +222,14 @@ void	convertDouble(const std::string &str)
 
 void	convertInt(const std::string &str)
 {
+	// Check if the number exeeds the range of int
+	long l = std::atol(str.c_str());
+	if (l < INT_MIN || INT_MAX > l)
+	{
+		std::cout << "Can't parse " << str << " as a int" << std::endl;
+		return ;
+	}
+
 	int i = std::atoi(str.c_str());
 
 	// Check if the float is in the range of displayable characters
