@@ -227,7 +227,7 @@ void	convertInt(const std::string &str)
 {
 	// Check if the number exeeds the range of int
 	long l = std::atol(str.c_str());
-	if (l < INT_MIN || INT_MAX > l)
+	if (l < INT_MIN || l > INT_MAX)
 	{
 		std::cout << "Can't parse " << str << " as a int" << std::endl;
 		return ;
