@@ -12,6 +12,17 @@ Data::~Data()
 {
 }
 
+Data &Data::operator=(const Data &rhs)
+{
+	if (this == &rhs)
+		return (*this);
+
+	this->strValue = rhs.strValue;
+	this->changes = rhs.changes;
+
+	return (*this);
+}
+
 void	Data::setStrValue(std::string str)
 {
 	this->strValue = str;
@@ -29,19 +40,9 @@ int	Data::getChanges() const
 	return (this->changes);
 }
 
-Data &Data::operator=(const Data &rhs)
-{
-	if (this == &rhs)
-		return (*this);
-
-	this->strValue = rhs.strValue;
-	this->changes = rhs.changes;
-
-	return (*this);
-}
-
 std::ostream &operator<<(std::ostream &os, const Data &data)
 {
 	os << "Data: " << data.getStrValue() << ", changes: " << data.getChanges();
-	return os;
+
+	return (os);
 }

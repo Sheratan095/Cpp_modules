@@ -21,6 +21,11 @@ Serializer &Serializer::operator=(const Serializer &rhs)
 
 //----------------------------------------------------------------------------------------------
 
+// The reinterpret_cast operator allows you to convert between types by reinterpreting the underlying bit pattern.
+// Convert between unrelated types, such as pointers and integers 
+// Convert between pointer types, such as pointers to objects, functions, or members 
+// Convert between integral types and pointers 
+// Convert a null pointer value to the null pointer value of the destination type 
 uintptr_t	Serializer::serialize(Data* ptr)
 {
 	uintptr_t	raw = reinterpret_cast<uintptr_t>(ptr);
