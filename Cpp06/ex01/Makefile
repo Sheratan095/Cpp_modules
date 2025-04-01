@@ -3,7 +3,7 @@ NAME = Serialization
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp Serializer.cpp
+SRCS = main.cpp Serializer.cpp Data.cpp
 
 all: $(NAME)
 
