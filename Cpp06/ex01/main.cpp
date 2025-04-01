@@ -4,19 +4,22 @@
 
 int main (void)
 {
+	std::cout << std::endl << "TRY WITH NULL POINTER" << std::endl;
+	Data* ptr1 = NULL;
+	uintptr_t nullSerializedValue = Serializer::serialize(ptr1);
+	std::cout << "Serialized value of nullptr: " << nullSerializedValue << std::endl;
+	Data *nullDeserializedSomeData = Serializer::deserialize(nullSerializedValue);
+	std::cout << "Deserialized value of nullptr: " << nullDeserializedSomeData << std::endl;
+
+	std::cout << std::endl << "TRY WITH VALID POINTER" << std::endl;
+
 	Data *someData = new Data();
 	someData->setStrValue("Hello World");
-
-	std::cout << "Some Data:\t\t" << *someData << std::endl;
-
-
+	std::cout << *someData << std::endl;
 	uintptr_t serializedValue = Serializer::serialize(someData);
 	std::cout << "Serialized value:\t" << serializedValue << " (a.k.a. addr " << std::hex << serializedValue << ")" << std::dec << std::endl;
-
-	someData->setStrValue("Bella");
-
 	Data *deserializedSomeData = Serializer::deserialize(serializedValue);
-	std::cout << "Deserialized some Data:\t" << *deserializedSomeData << std::endl;
+	std::cout << "Deserialized " << *deserializedSomeData << std::endl;
 
-	delete someData;
+	delete (someData);
 }
