@@ -8,7 +8,7 @@
 		"name": "(gdb) Launch",
 		"type": "cppdbg",
 		"request": "launch",
-		"program": "${workspaceFolder}/Cpp06/ex00/ConversionOfScalarTypes",
+		"program": "${workspaceFolder}/Cpp06/ex02/IdentifyRealType",
 		"args": ["9"],
 		"stopAtEntry": false,
 		"cwd": "${fileDirname}",
