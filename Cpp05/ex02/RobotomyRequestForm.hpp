@@ -13,8 +13,10 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp"
 #include <cstdlib>
+#include <iostream>
+
+#include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
 {
