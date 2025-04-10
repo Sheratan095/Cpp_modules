@@ -1,6 +1,8 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
+#include <iostream>
+
 template <class T>
 class Array
 {
@@ -15,7 +17,7 @@ class Array
 		~Array(void);
 
 		Array&	operator=(const Array& rhs);
-		T&		operator[](unsigned int index);
+		T&		operator[](unsigned int index) const;
 
 		size_t	size(void) const;
 
@@ -25,5 +27,7 @@ class Array
 				const char *what() const throw();
 		};
 };
+
+#include "Array.tpp"
 
 #endif

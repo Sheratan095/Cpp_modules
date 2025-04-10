@@ -1,10 +1,21 @@
-// #include "Array.hpp"
-
 #include <iostream>
+#include "Array.hpp"
 
-int	main( void )
+int main(int, char**)
 {
-	int * a = new int(); 
+	Array<int> numbe;
 
-	std::cout << "a: " << a << std::endl;
+	Array<float> numbers(10);
+
+	Array<float> test(numbers);
+
+	for (float i = 0; i < 10; i++)
+		numbers[i] = i / 2;
+
+	for (float i = 0; i < 10; i++)
+		std::cout << numbers[i] << std::endl;
+
+	std::cout << numbers.size() << std::endl;
+
+	return (0);
 }

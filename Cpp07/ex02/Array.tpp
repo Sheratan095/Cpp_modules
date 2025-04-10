@@ -9,10 +9,54 @@ template <typename T>
 Array<T>::Array(unsigned int n) : _content(new T[n]), _size(n)
 {}
 
+// Don't need to delete the content, because this is a constructor!!!
+template <typename T>
+Array<T>::Array(const Array& src): _size(src._size)
+{
+	_content = new T[src._size];
+	for (size_t i = 0; i < _size; i++)
+		_content[i] = src._content[i];
+}
+
 template <typename T>
 Array<T>::~Array(void)
 {
 	// Check if the content is initialized
 	if (_content)
-		delete[] _content;
+		delete[] (_content);
+}
+
+template <typename T>
+Array<T>&	Array<T>::operator=(const Array& rhs)
+{
+	if (this == &rhs)
+		return (*this);
+
+	_size = rhs._size;
+
+	delete[] (_content);
+	_content = new T[_size];
+
+	return (*this);
+}
+
+template <typename T>
+T&	Array<T>::operator[](unsigned int index) const
+{
+	if (index >= _size)
+		throw IndexOutOfBoundsException();
+
+	return (_content[index]);
+}
+
+template <typename T>
+size_t	Array<T>::size(void) const
+{
+	return (_size);
+}
+
+template<typename T>
+const char *Array<T>::IndexOutOfBoundsException::what() const throw()
+{
+	return ("Index out of bounds";)
 }
