@@ -28,6 +28,7 @@ class Array
 		};
 };
 
+//Templates are not compiled into standalone code
 #include "Array.tpp"
 
 #endif

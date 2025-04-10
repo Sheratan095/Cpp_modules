@@ -1,5 +1,9 @@
 #include "Array.hpp"
 
+//Reason for .tpp: Templates are not compiled into standalone code.
+// The compiler needs the full implementation in the same translation unit where the template is used
+// => are to be included and not compiled into file objects
+
 template <typename T>
 Array<T>::Array(void) : _content(NULL), _size(0)
 {}
@@ -14,6 +18,7 @@ template <typename T>
 Array<T>::Array(const Array& src): _size(src._size)
 {
 	_content = new T[src._size];
+
 	for (size_t i = 0; i < _size; i++)
 		_content[i] = src._content[i];
 }
@@ -21,9 +26,7 @@ Array<T>::Array(const Array& src): _size(src._size)
 template <typename T>
 Array<T>::~Array(void)
 {
-	// Check if the content is initialized
-	if (_content)
-		delete[] (_content);
+	delete[] (_content);
 }
 
 template <typename T>
@@ -58,5 +61,5 @@ size_t	Array<T>::size(void) const
 template<typename T>
 const char *Array<T>::IndexOutOfBoundsException::what() const throw()
 {
-	return ("Index out of bounds";)
+	return ("Index out of bounds");
 }
