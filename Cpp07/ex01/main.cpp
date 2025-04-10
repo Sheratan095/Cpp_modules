@@ -3,12 +3,12 @@
 #include <iostream>
 
 template<typename T>
-void print(T &x)
+void	print(T &x)
 {
 	std::cout << x;
 }
 
-int main()
+int	main()
 {
 	// The length of an array declared with fixed size MUST be const and known at compile time
 	const int intlen = 5, charlen = 10, doublelen = 5;
