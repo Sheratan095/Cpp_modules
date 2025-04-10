@@ -52,6 +52,7 @@
 		"streambuf": "cpp",
 		"map": "cpp",
 		"numbers": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"*.tpp": "cpp"
 	}
 }

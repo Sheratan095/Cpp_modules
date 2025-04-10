@@ -3,7 +3,7 @@ NAME = Array
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp Array.tpp
+SRCS = main.cpp
 
 all: $(NAME)
 
