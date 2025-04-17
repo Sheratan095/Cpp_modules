@@ -1,1 +1,2 @@
 [] Remove bad comment in exeption throwing in all bureaucrat in cpp05
+[] Add parenthesis to exeption throwing
