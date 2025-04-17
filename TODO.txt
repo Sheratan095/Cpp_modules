@@ -1,0 +1,1 @@
+[] Remove bad comment in exeption throwing in all bureaucrat in cpp05
