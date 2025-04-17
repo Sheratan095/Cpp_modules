@@ -17,9 +17,9 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), g
 	std::cout << "[FORM] constructor called" << std::endl;
 
 	if (gradeToSign < MAX_GRADE || gradeToExecute < MAX_GRADE)
-		throw GradeTooHighException();
+		throw (GradeTooHighException());
 	if (gradeToSign > MIN_GRADE || gradeToExecute > MIN_GRADE)
-		throw GradeTooLowException();
+		throw (GradeTooLowException());
 
 	this->isSigned = false;
 }
@@ -74,7 +74,7 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 		return ;
 
 	if (bureaucrat.getGrade() > this->gradeToSign)
-		throw Form::GradeTooLowException();
+		throw (Form::GradeTooLowException());
 
 	this->isSigned = true;
 }

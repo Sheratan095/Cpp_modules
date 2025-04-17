@@ -54,9 +54,9 @@ const std::string	&RobotomyRequestForm::getTarget() const
 void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
 	if (executor.getGrade() > this->getGradeToExecute())
-		throw AForm::GradeTooLowException();
+		throw (AForm::GradeTooLowException());
 	if (!this->getIsSigned())
-		throw AForm::FormNotSignedException();
+		throw (AForm::FormNotSignedException());
 
 	// Generate a random number between 0 and 1
 	int ran = random() % 2;

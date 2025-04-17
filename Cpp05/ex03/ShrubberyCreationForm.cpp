@@ -54,9 +54,9 @@ const std::string	&ShrubberyCreationForm::getTarget() const
 void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
 	if (executor.getGrade() > this->getGradeToExecute())
-		throw AForm::GradeTooLowException();
+		throw (AForm::GradeTooLowException());
 	if (!this->getIsSigned())
-		throw AForm::FormNotSignedException();
+		throw (AForm::FormNotSignedException());
 
 	std::string	fileName = this->target + "_shrubbery";
 

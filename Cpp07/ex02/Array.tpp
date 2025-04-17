@@ -47,7 +47,7 @@ template <typename T>
 T&	Array<T>::operator[](unsigned int index) const
 {
 	if (index >= _size)
-		throw IndexOutOfBoundsException();
+		throw (IndexOutOfBoundsException());
 
 	return (_content[index]);
 }
