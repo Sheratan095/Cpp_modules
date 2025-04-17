@@ -46,7 +46,7 @@ class Bureaucrat
 		void	signForm(AForm &form) const;
 		void	executeForm(AForm const &form);
 
-		// NETEST CLASSES
+		// NESTED CLASSES
 		class GradeTooHighException : public std::exception
 		{
 			// what() is a virtual function inherited from std::exception.
