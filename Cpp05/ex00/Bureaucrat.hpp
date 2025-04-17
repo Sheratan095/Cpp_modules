@@ -41,8 +41,6 @@ class Bureaucrat
 		// NETEST CLASSES
 		class GradeTooHighException : public std::exception
 		{
-			// throw() is a specifier that tells the compiler that the
-			//		function does not throw exceptions .
 			// what() is a virtual function inherited from std::exception.
 			const char	*what() const throw();
 		};

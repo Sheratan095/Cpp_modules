@@ -62,9 +62,9 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 	int ran = random() % 2;
 
 	if (ran == 0)
-		std::cout << "Drilling noises... " << this->target << " has been robotomized" << std::endl;
+		std::cout << this->target << " has been robotomized" << std::endl;
 	else
-		std::cout << "Drilling noises... " << this->target << " robotomization failed" << std::endl;
+		std::cout << this->target << " robotomization failed" << std::endl;
 
 }
 
