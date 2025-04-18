@@ -20,7 +20,7 @@ fclean: clean
 
 re: fclean all
 
-arg = nan
+arg = 42.0f
 
 test: all
 	./$(NAME) $(arg)

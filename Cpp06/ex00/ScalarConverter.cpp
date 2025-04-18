@@ -36,9 +36,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 
 int	getPrecision(const std::string& rawValue)
 {
-	// Default precision is 0
-	//	if precision is 1: 42 => 42.0, with 0 precision: 42 => 42
-	int		precision = 0;
+	//	Default precision is 1: 42 => 42.0, with 0 precision: 42 => 42
+	int		precision = 1;
 
 	// Find the position of the decimal point
 	size_t	dotPosition = rawValue.find('.');
