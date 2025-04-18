@@ -120,7 +120,7 @@ bool	isStringValid(const std::string &rawValue)
 	bool	charFound = false;
 	for (size_t i = 0; i < rawValue.size(); i++)
 	{
-		if (isalpha(rawValue[i] ))
+		if (isalpha(rawValue[i]))
 		{
 			if (charFound)
 			{
@@ -150,7 +150,7 @@ int	getType(const std::string &rawValue)
 		return (1);
 
 	// skip sign
-	while (rawValue[i] == '-' || rawValue[i] == '+')
+	if (rawValue[i] == '-' || rawValue[i] == '+')
 		i++;
 	// skip digits
 	while (rawValue[i] >= '0' && rawValue[i] <= '9')
