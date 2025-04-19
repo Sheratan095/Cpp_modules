@@ -19,7 +19,7 @@ class Array
 		Array&	operator=(const Array& rhs);
 		T&		operator[](unsigned int index) const;
 
-		size_t	size(void) const;
+		unsigned int	size(void) const;
 
 		class IndexOutOfBoundsException : public std::exception
 		{
