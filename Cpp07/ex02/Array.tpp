@@ -19,7 +19,7 @@ Array<T>::Array(const Array& src): _size(src._size)
 {
 	_content = new T[src._size];
 
-	for (size_t i = 0; i < _size; i++)
+	for (unsigned int i = 0; i < _size; i++)
 		_content[i] = src._content[i];
 }
 
@@ -39,6 +39,9 @@ Array<T>&	Array<T>::operator=(const Array& rhs)
 
 	delete[] (_content);
 	_content = new T[_size];
+
+	for (unsigned int i = 0; i < _size; i++)
+		_content[i] = src._content[i];
 
 	return (*this);
 }
