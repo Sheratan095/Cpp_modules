@@ -41,7 +41,7 @@ Array<T>&	Array<T>::operator=(const Array& rhs)
 	_content = new T[_size];
 
 	for (unsigned int i = 0; i < _size; i++)
-		_content[i] = src._content[i];
+		_content[i] = rhs._content[i];
 
 	return (*this);
 }
