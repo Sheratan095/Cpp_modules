@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+         +:+     */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:12:18 by maceccar          #+#    #+#             */
 /*   Updated: 2025/05/06 15:31:46 by maceccar         ###   ########.fr       */
@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <limits>
 
 Span::Span(unsigned int n) : _maxSize(n), _numbers(0)
 {}
@@ -43,7 +44,7 @@ void	Span::addNumber(const int& n)
 void	Span::addNumbers(const std::vector<int>& numbers)
 {
 	if (_numbers.size() + numbers.size() > _maxSize)
-		throw SpanFullException();
+		throw (SpanFullException());
 	
 	_numbers.insert(_numbers.end(), numbers.begin(), numbers.end());
 }
@@ -56,12 +57,15 @@ unsigned int	Span::shortestSpan() const
 	std::vector<int>	tmpCopy(_numbers);
 	std::sort(tmpCopy.begin(), tmpCopy.end());
 
-	// start from the first element (smallest)
-	unsigned int	shortest = tmpCopy[0];
+	// Initialize with the maximum possible unsigned int value
+	unsigned int shortest = tmpCopy[0];
 
-	for (size_t i = 0; i < tmpCopy.size(); ++i)
+	// Proper loop starting from index 1 and comparing with previous element
+	for (size_t i = 1; i < tmpCopy.size(); ++i)
 	{
-		unsigned int	diff = tmpCopy[i] - tmpCopy[i - 1];
+		// Calculate difference between adjacent elements
+		unsigned int diff = tmpCopy[i] - tmpCopy[i-1];
+
 		if (diff < shortest)
 			shortest = diff;
 	}
