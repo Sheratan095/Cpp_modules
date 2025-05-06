@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 14:43:24 by maceccar          #+#    #+#             */
+/*   Created: 2025/05/06 15:31:45 by maceccar          #+#    #+#             */
 /*   Updated: 2025/05/06 15:31:46 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
+#ifndef SPAN_HPP
+#define SPAN_HPP
+
 #include <vector>
 
-int main()
+class Span
 {
-	std::vector<int> v;
-	v.push_back(1);
-	v.push_back(2);
-	v.push_back(3);
-	v.push_back(4);
-	v.push_back(5);
+	private:
+		std::vector<int>	_numbers;
+		unsigned int		_maxSize;
 
-	try
-	{
-		std::cout << easyfind(v, 1) << std::endl;
-		std::cout << easyfind(v, 423424) << std::endl;
-		std::cout << easyfind(v, 0) << std::endl;
-	}
-	catch (std::exception &ex)
-	{
-		std::cout << ex.what() << std::endl;
-	}
+	public:
+		Span(unsigned int n);
+		Span(const Span &other);
+		~Span();
 
-	return (0);
+		Span &operator=(const Span &rhs);
 }
+
+#endif
