@@ -32,7 +32,7 @@ void	emptySpanTest()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Exception: " << e.what() << " (as expected)" << std::endl;
+		std::cout << "Exception: " << e.what() << std::endl;
 	}
 	
 	try
@@ -41,7 +41,7 @@ void	emptySpanTest()
 		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	} catch (std::exception& e)
 	{
-		std::cout << "Exception: " << e.what() << " (as expected)" << std::endl;
+		std::cout << "Exception: " << e.what() << std::endl;
 	}
 }
 
@@ -63,7 +63,7 @@ void	fullSpanTest()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Exception: " << e.what() << " (as expected)" << std::endl;
+		std::cout << "Exception: " << e.what() << std::endl;
 	}
 }
 
