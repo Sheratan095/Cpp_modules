@@ -15,6 +15,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 class Span
 {
@@ -29,7 +30,11 @@ class Span
 
 		Span	&operator=(const Span &rhs);
 
-		void			addNumber(const int n);
+		void			addNumber(const int& n);
+		
+		// New method that accepts a vector of integers
+		void			addNumbers(const std::vector<int>& numbers);
+		
 		unsigned int	shortestSpan() const;
 		unsigned int	longestSpan() const;
 

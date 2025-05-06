@@ -32,12 +32,20 @@ Span	&Span::operator=(const Span &rhs)
 	return (*this);
 }
 
-void	Span::addNumber(int n)
+void	Span::addNumber(const int& n)
 {
 	if (this->_numbers.size() >= this->_maxSize)
 		throw (SpanFullException());
 
 	this->_numbers.push_back(n);
+}
+
+void	Span::addNumbers(const std::vector<int>& numbers)
+{
+	if (_numbers.size() + numbers.size() > _maxSize)
+		throw SpanFullException();
+	
+	_numbers.insert(_numbers.end(), numbers.begin(), numbers.end());
 }
 
 unsigned int	Span::shortestSpan() const

@@ -163,6 +163,54 @@ void	consecutiveNumbersTest()
 	}
 }
 
+void	rangeAddTest()
+{
+	std::cout << "\n--- Range Add Test ---" << std::endl;
+	std::vector<int> numbers;
+	for (int i = 1; i <= 5; i++)
+		numbers.push_back(i * 10);
+	
+	Span sp = Span(5);
+	try
+	{
+		sp.addNumbers(numbers);  // Now passing the vector directly
+		std::cout << "Successfully added range of numbers." << std::endl;
+		
+		int shortest = sp.shortestSpan();
+		int longest = sp.longestSpan();
+		
+		std::cout << "Shortest span: " << shortest << " (Expected: 10)" << std::endl;
+		std::cout << "Longest span: " << longest << " (Expected: 40)" << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+}
+
+void	rangeAddOverflowTest()
+{
+	std::cout << "\n--- Range Add Overflow Test ---" << std::endl;
+	std::cout << "Expected: Exception - 'Span is full'" << std::endl;
+	
+	std::vector<int> numbers;
+	for (int i = 1; i <= 10; i++)
+		numbers.push_back(i * 5);
+	
+	Span sp = Span(5);  // Can only hold 5 numbers
+	try
+	{
+		// Try to add 10 numbers to a Span with capacity of 5
+		sp.addNumbers(numbers);  // Now passing the vector directly
+		std::cout << "ERROR: No exception thrown!" << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+
+}
+
 int main()
 {
 	basicTest();
@@ -172,6 +220,8 @@ int main()
 	largeSpanTest();
 	sequentialAddTest();
 	consecutiveNumbersTest();
+	rangeAddTest();
+	rangeAddOverflowTest();
 	
 	return (0);
 }
