@@ -40,6 +40,27 @@ void	Span::addNumber(int n)
 	this->_numbers.push_back(n);
 }
 
+unsigned int	Span::shortestSpan() const
+{
+	if (_numbers.size() < 2)
+		throw (NotEnoughNumbersException());
+
+	std::vector<int>	tmpCopy(_numbers);
+	std::sort(tmpCopy.begin(), tmpCopy.end());
+
+	// start from the first element (smallest)
+	unsigned int	shortest = tmpCopy[0];
+
+	for (size_t i = 0; i < tmpCopy.size(); ++i)
+	{
+		unsigned int	diff = tmpCopy[i] - tmpCopy[i - 1];
+		if (diff < shortest)
+			shortest = diff;
+	}
+
+	return (shortest);
+}
+
 unsigned int	Span::longestSpan() const
 {
 	if (_numbers.size() < 2)
@@ -49,7 +70,7 @@ unsigned int	Span::longestSpan() const
 	std::sort(tmpCopy.begin(), tmpCopy.end());
 
 //			last element(biggest)		  - first element(smallest)
-	return (_numbers[_numbers.size() - 1] - _numbers[0]);
+	return (tmpCopy[_numbers.size() - 1] - tmpCopy[0]);
 }
 
 const char	*Span::SpanFullException::what() const throw()

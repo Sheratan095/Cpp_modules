@@ -19,8 +19,8 @@
 class Span
 {
 	private:
-		std::vector<int>	_numbers;
 		unsigned int		_maxSize;
+		std::vector<int>	_numbers;
 
 	public:
 		Span(unsigned int n);
