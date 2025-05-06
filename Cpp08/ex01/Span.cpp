@@ -9,3 +9,55 @@
 /*   Updated: 2025/05/06 15:31:46 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Span.hpp"
+
+Span::Span(unsigned int n) : _maxSize(n), _numbers(0)
+{}
+
+Span::Span(const Span &other) : _maxSize(other._maxSize), _numbers(other._numbers)
+{}
+
+Span::~Span()
+{}
+
+Span	&Span::operator=(const Span &rhs)
+{
+	if (this == &rhs)
+		return (*this);
+
+	this->_maxSize = rhs._maxSize;
+	this->_numbers = rhs._numbers;
+
+	return (*this);
+}
+
+void	Span::addNumber(int n)
+{
+	if (this->_numbers.size() >= this->_maxSize)
+		throw (SpanFullException());
+
+	this->_numbers.push_back(n);
+}
+
+unsigned int	Span::longestSpan() const
+{
+	if (_numbers.size() < 2)
+		throw (Span::NotEnoughNumbersException());
+
+	std::vector<int>	tmpCopy(_numbers);
+	std::sort(tmpCopy.begin(), tmpCopy.end());
+
+//			last element(biggest)		  - first element(smallest)
+	return (_numbers[_numbers.size() - 1] - _numbers[0]);
+}
+
+const char	*Span::SpanFullException::what() const throw()
+{
+	return ("Span is full");
+}
+
+const char	*Span::NotEnoughNumbersException::what() const throw()
+{
+	return ("Not enough numbers to find a span");
+}

@@ -14,6 +14,7 @@
 #define SPAN_HPP
 
 #include <vector>
+#include <algorithm>
 
 class Span
 {
@@ -26,7 +27,23 @@ class Span
 		Span(const Span &other);
 		~Span();
 
-		Span &operator=(const Span &rhs);
-}
+		Span	&operator=(const Span &rhs);
+
+		void			addNumber(int n);
+		unsigned int	shortestSpan() const;
+		unsigned int	longestSpan() const;
+
+		class	SpanFullException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class	NotEnoughNumbersException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+};
 
 #endif
