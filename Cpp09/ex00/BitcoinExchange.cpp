@@ -88,10 +88,11 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		}
 
 		std::string	dateStr;
+		Date	targetDate;
 		try
 		{
 			std::string	dateStr = line.substr(0, 10);
-			Date	targetDate(dateStr);
+			targetDate = Date(dateStr);
 		}
 		catch (const std::exception &ex)
 		{
@@ -118,9 +119,30 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 			std::cout << "Error: not a positive number." << std::endl;
 			continue;
 		}
+
+		std::pair<Date, float> closestDate = getClosestLowerDate(targetDate);
+		std::cout << closestDate.first.toString() << " => " << value << " = " << closestDate.second * value << std::endl;
 	}
 
 	file.close();
+}
+
+std::pair<Date, float>	BitcoinExchange::getClosestLowerDate(const Date &date) const
+{
+	std::map<Date, float>::const_iterator it = this->_values.find(date);
+
+	if (it != this->_values.end())
+		return (std::make_pair(it->first, it->second));
+
+	it = this->_values.lower_bound(date);
+
+	// if (it == this->_values.begin())
+	// {
+	// 	throw DateNotFoundException();
+	// }
+
+	--it;
+	return (std::make_pair(it->first, it->second));
 }
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange &rhs)

@@ -14,6 +14,7 @@ class Date
 		int	_day;
 
 	public:
+		Date();
 		Date(const std::string &dateString);
 		Date(const Date &source);
 		~Date();

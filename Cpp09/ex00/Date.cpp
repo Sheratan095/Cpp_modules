@@ -1,5 +1,8 @@
 #include "Date.hpp"
 
+Date::Date()
+{}
+
 // Rigth format is YYYY-MM-DD
 Date::Date(const std::string &dateString)
 {

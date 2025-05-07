@@ -9,7 +9,8 @@
 class BitcoinExchange
 {
 	private:
-		std::map<Date, float> _values;
+		std::map<Date, float>	_values;
+		std::pair<Date, float>	getClosestLowerDate(const Date &date) const;
 
 	public:
 		BitcoinExchange(const std::string	&filePath);
