@@ -2,6 +2,8 @@
 #define DATE_HPP
 
 #include <string>
+#include <iostream>
+#include <cstdlib>
 
 class Date
 {

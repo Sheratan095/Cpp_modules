@@ -1,8 +1,32 @@
 #include "Date.hpp"
 
+// Rigth format is YYYY-MM-DD
 Date::Date(const std::string &dateString)
 {
-	std::string::values[] = dateString.sli
+	if (dateString.length() != 10 || dateString[4] != '-' || dateString[7] != '-')
+		throw (InvalidDateException());
+
+	std::string	str_year = dateString.substr(0, 4);
+	std::string	str_month = dateString.substr(5, 2);
+	std::string	str_day = dateString.substr(8, 2);
+
+	if (str_year.length() != 4 || str_month.length() != 2 || str_day.length() != 2)
+		throw (InvalidDateException());
+
+	// strtol(): convert c string to long
+	// 	endptr point to the first char after the number, if it's not \0, the string doesn't contains only digits
+	// 	10: indicate the base of the number system (decimal)
+	char	*endptr;
+
+	_year = std::strtol(str_year.c_str(), &endptr, 10);
+	if (*endptr != '\0')
+		throw (InvalidDateException());
+	_month = std::strtol(str_month.c_str(), &endptr, 10);
+	if (*endptr != '\0')
+		throw (InvalidDateException());
+	_day = std::strtol(str_day.c_str(), &endptr, 10);
+	if (*endptr != '\0')
+		throw (InvalidDateException());
 }
 
 Date::Date(const Date &source):
