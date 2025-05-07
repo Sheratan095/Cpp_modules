@@ -17,6 +17,12 @@ class Date
 
 		Date&	operator=(const Date &rhs);
 		bool	operator==(const Date &rhs) const;
+
+		class InvalidDateException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
 };
 
 #endif

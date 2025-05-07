@@ -2,9 +2,7 @@
 
 Date::Date(const std::string &dateString)
 {
-	// Parse the date string and initialize _year, _month, and _day
-	// Example: "2023-10-05" -> _year = 2023, _month = 10, _day = 5
-	// Implement parsing logic here
+	std::string::values[] = dateString.sli
 }
 
 Date::Date(const Date &source):
@@ -31,4 +29,9 @@ Date&	Date::operator=(const Date &rhs)
 bool	Date::operator==(const Date &rhs) const
 {
 	return (this->_year == rhs._year && this->_month == rhs._month && this->_day == rhs._day);
+}
+
+const char*	Date::InvalidDateException::what() const throw()
+{
+	return ("Invalid date");
 }

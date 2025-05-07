@@ -16,7 +16,6 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &copy);
 
 		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
-
 };
 
 #endif
