@@ -11,7 +11,7 @@ class BitcoinExchange
 		std::map<Date, float> _values;
 
 	public:
-		BitcoinExchange(std::string filename);
+		BitcoinExchange(const std::string	&filePath);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &copy);
 
