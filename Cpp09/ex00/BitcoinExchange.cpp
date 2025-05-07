@@ -70,13 +70,18 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 	for (int i = 1; getline(file, line); ++i)
 	{
 		// check the format of first line
-		if (i == 1 && line != "date | value")
-		{
-			std::cout << "Error: invalid file header" << std::endl;
-			return;
+		if (i == 1)
+		{ 
+			if(line != "date | value")
+			{
+				std::cout << "Error: invalid file header" << std::endl;
+				return;
+			}
+			else
+				continue;
 		}
 
-		if (line.length() < 14 || line[12] != '|' || line[11] != ' ' || line[13] != ' ')
+		if (line.length() < 14 || line[11] != '|' || line[10] != ' ' || line[12] != ' ')
 		{
 			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
@@ -110,7 +115,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		}
 		if (value < 0)
 		{
-			std::cout << "Error: not a positive number." << value << std::endl;
+			std::cout << "Error: not a positive number." << std::endl;
 			continue;
 		}
 	}
