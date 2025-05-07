@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 12:05:38 by maceccar          #+#    #+#             */
+/*   Updated: 2025/05/07 12:06:07 by maceccar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
+#include <list>
 #include "MutantStack.hpp"
 
 int main()
 {
+	std::cout << "TEST MUTANTSTACK BEHAVIOR" << std::endl;
+
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
@@ -24,5 +39,30 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
+
+	std::cout << "\nTEST LIST BEHAVIOR" << std::endl;
+
+	// Test with std::list to compare behavior with MutantStack
+	std::list<int> lst;
+	lst.push_back(5);
+	lst.push_back(17);
+	std::cout << lst.back() << std::endl;  // equivalent to top() for stack
+	lst.pop_back();                       // equivalent to pop() for stack
+	std::cout << lst.size() << std::endl;
+	lst.push_back(3);
+	lst.push_back(5);
+	lst.push_back(737);
+	//[...]
+	lst.push_back(0);
+	std::list<int>::iterator lst_it = lst.begin();
+	std::list<int>::iterator lst_ite = lst.end();
+	++lst_it;
+	--lst_it;
+	while (lst_it != lst_ite)
+	{
+		std::cout << *lst_it << std::endl;
+		++lst_it;
+	}
+	
 	return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+         +:+     */
+/*   By: maceccar <maceccar@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:12:18 by maceccar          #+#    #+#             */
-/*   Updated: 2025/05/06 15:31:46 by maceccar         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:06:07 by maceccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
