@@ -53,6 +53,8 @@
 		"map": "cpp",
 		"numbers": "cpp",
 		"cinttypes": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"list": "cpp",
+		"set": "cpp"
 	}
 }

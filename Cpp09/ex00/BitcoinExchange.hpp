@@ -16,9 +16,17 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &copy);
 
+		void	parseInputFile(const std::string &input) const;
+
 		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
 
 		class InvalidFileException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class EmptyDatabaseException : public std::exception
 		{
 			public:
 				const char *what() const throw();
