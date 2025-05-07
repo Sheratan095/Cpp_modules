@@ -5,7 +5,7 @@ BitcoinExchange::BitcoinExchange(const std::string &filePath)
 	std::ifstream	file(filePath.c_str());
 	std::string		line;
 
-	if (!file.is_open())
+	if (!file.is_open() || file.fail())
 		throw (InvalidFileException());
 
 	// file format is YYYY-MM-DD,value_int.value_decimal
