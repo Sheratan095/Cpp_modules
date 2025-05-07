@@ -23,7 +23,7 @@ BitcoinExchange::BitcoinExchange(const std::string &filePath)
 		if (line.length() < 12)
 			throw (InvalidFileException());
 
-		if (line[11] != ',')
+		if (line[10] != ',')
 			throw (InvalidFileException());
 
 		std::string	dateStr = line.substr(0, 10);
