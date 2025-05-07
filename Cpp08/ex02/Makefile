@@ -3,8 +3,7 @@ NAME = MutatedAbomination
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp \
-		Span.cpp \
+SRCS = main.cpp
 
 all: $(NAME)
 
