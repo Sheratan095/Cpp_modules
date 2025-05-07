@@ -76,7 +76,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 			return;
 		}
 
-		if (line.length() < 12 || line[13] != '|' || line[12] != ' ' || line[14] != ' ')
+		if (line.length() < 14 || line[12] != '|' || line[11] != ' ' || line[13] != ' ')
 		{
 			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
@@ -114,7 +114,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 			continue;
 		}
 
-
+		
 	}
 
 	file.close();
