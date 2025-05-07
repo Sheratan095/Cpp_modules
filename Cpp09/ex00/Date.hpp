@@ -15,7 +15,8 @@ class Date
 		Date(const Date &source);
 		~Date();
 
-		Date	&operator=(const Date &rhs);
+		Date&	operator=(const Date &rhs);
+		bool	operator==(const Date &rhs) const;
 };
 
 #endif

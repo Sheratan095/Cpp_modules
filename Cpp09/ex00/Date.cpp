@@ -7,7 +7,7 @@ Date::Date(const std::string &dateString)
 	// Implement parsing logic here
 }
 
-Date::Date(const Date &source) : 
+Date::Date(const Date &source):
 	_year(source._year),
 	_month(source._month),
 	_day(source._day)
@@ -26,4 +26,9 @@ Date&	Date::operator=(const Date &rhs)
 	this->_day = rhs._day;
 
 	return (*this);
+}
+
+bool	Date::operator==(const Date &rhs) const
+{
+	return (this->_year == rhs._year && this->_month == rhs._month && this->_day == rhs._day);
 }
