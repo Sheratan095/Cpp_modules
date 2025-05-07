@@ -30,6 +30,27 @@ Date::Date(const std::string &dateString)
 
 	if (_year < 0 || _month < 1 || _month > 12 || _day < 1 || _day > 31)
 		throw (InvalidDateException());
+
+	// February
+	if (_month == 2)
+	{
+		// anno bisestile
+		//  se l'anno solare è divisibile per 4
+		//  tuttavia, se è anche divisibile per 100 allora, è un anno normale
+		//  a meno che l'anno solare non sia divisibile per 400, allora è di nuovo bisestile
+		bool	isLeapYear = (_year % 4 == 0 && (_year % 100 != 0 || _year % 400 == 0));
+
+		// se è bisestile: ha 29 giorni, altrimenti 28
+		if (_day > (isLeapYear ? 29 : 28))
+			throw (InvalidDateException());
+	}
+
+	//	April,			June,		   September,	  November		have 30 days
+	if (_month == 4 || _month == 6 || _month == 9 || _month == 11)
+	{
+		if (_day > 30)
+			throw (InvalidDateException());
+	}
 }
 
 Date::Date(const Date &source):
