@@ -27,6 +27,9 @@ Date::Date(const std::string &dateString)
 	_day = std::strtol(str_day.c_str(), &endptr, 10);
 	if (*endptr != '\0')
 		throw (InvalidDateException());
+
+	if (_year < 0 || _month < 1 || _month > 12 || _day < 1 || _day > 31)
+		throw (InvalidDateException());
 }
 
 Date::Date(const Date &source):

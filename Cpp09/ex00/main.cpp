@@ -5,7 +5,7 @@ int main()
 {
 	try
 	{
-		Date date1("2023-10-00");
+		Date date1("2022-10-01");
 		Date date2("2023-10-05");
 		Date date3("2023-10-06");
 
