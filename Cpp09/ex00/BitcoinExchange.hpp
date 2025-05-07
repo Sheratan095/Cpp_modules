@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <fstream>
 #include "Date.hpp"
 
 class BitcoinExchange
@@ -16,6 +17,13 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &copy);
 
 		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
+
+		class InvalidFileException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
 };
 
 #endif
