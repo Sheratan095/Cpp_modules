@@ -50,6 +50,23 @@ Date&	Date::operator=(const Date &rhs)
 	return (*this);
 }
 
+std::string	Date::toString()
+{
+	std::stringstream ss;
+
+	ss << this->_year;
+	ss << "-";
+	if (this->_month < 10)
+		ss << "0";
+	ss << this->_month;
+	ss << "-";
+	if (this->_day < 10)
+		ss << "0";
+	ss << this->_day;
+
+	return (ss.str());
+}
+
 bool	Date::operator==(const Date &rhs) const
 {
 	return (this->_year == rhs._year && this->_month == rhs._month && this->_day == rhs._day);

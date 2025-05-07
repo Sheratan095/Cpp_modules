@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 
 class Date
@@ -16,6 +17,8 @@ class Date
 		Date(const std::string &dateString);
 		Date(const Date &source);
 		~Date();
+
+		std::string	toString();
 
 		Date&	operator=(const Date &rhs);
 		bool	operator==(const Date &rhs) const;
