@@ -1,11 +1,28 @@
 #include "Date.hpp"
+#include "BitcoinExchange.hpp"
 #include <iostream>
 
 void dateTests();
 
-int main()
+int main(int argc, char *argv[])
 {
-	dateTests();
+	BitcoinExchange exchange("data.csv");
+
+	if (argc != 2)
+	{
+		std::cerr << "Error: could not open file." << std::endl;
+		return (1);
+	}
+	std::string inputFile = argv[1];
+	try
+	{
+		exchange.parseInputFile(inputFile);	
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Error: exception thrown: " << e.what() << std::endl;
+		return (1);
+	}
 }
 
 void dateTests()

@@ -113,8 +113,6 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 			std::cout << "Error: not a positive number." << value << std::endl;
 			continue;
 		}
-
-		
 	}
 
 	file.close();
