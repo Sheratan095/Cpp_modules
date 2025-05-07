@@ -6,16 +6,16 @@
 class Date
 {
 	private:
-		int _year;
-		int _month;
-		int _day;
+		int	_year;
+		int	_month;
+		int	_day;
 
 	public:
 		Date(const std::string &dateString);
 		Date(const Date &source);
 		~Date();
 
-		Date &operator=(const Date &rhs);
+		Date	&operator=(const Date &rhs);
 };
 
 #endif
