@@ -72,7 +72,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		// check the format of first line
 		if (i == 1 && line != "date | value")
 		{
-			std::cout << "Error: invalid file header" << line << std::endl;
+			std::cout << "Error: invalid file header" << std::endl;
 			return;
 		}
 
