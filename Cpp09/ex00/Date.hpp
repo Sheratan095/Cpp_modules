@@ -22,6 +22,8 @@ class Date
 
 		Date&	operator=(const Date &rhs);
 		bool	operator==(const Date &rhs) const;
+		bool	operator<(const Date &rhs) const;
+		bool	operator>(const Date &rhs) const;
 
 		class InvalidDateException : public std::exception
 		{

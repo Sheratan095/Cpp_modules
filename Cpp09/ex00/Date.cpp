@@ -96,6 +96,24 @@ bool	Date::operator==(const Date &rhs) const
 	return (this->_year == rhs._year && this->_month == rhs._month && this->_day == rhs._day);
 }
 
+bool	Date::operator<(const Date &rhs) const
+{
+	if (this->_year != rhs._year)
+		return (this->_year < rhs._year);
+	if (this->_month != rhs._month)
+		return (this->_month < rhs._month);
+	return (this->_day < rhs._day);
+}
+
+bool	Date::operator>(const Date &rhs) const
+{
+	if (this->_year != rhs._year)
+		return (this->_year > rhs._year);
+	if (this->_month != rhs._month)
+		return (this->_month > rhs._month);
+	return (this->_day > rhs._day);
+}
+
 const char*	Date::InvalidDateException::what() const throw()
 {
 	return ("Invalid date");
