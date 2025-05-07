@@ -97,7 +97,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		// get the value of the exchange rate
 		std::string	valueStr = line.substr(13);
 		char	*end;
-		long	value = std::strtof(valueStr.c_str(), &end);
+		float	value = std::strtof(valueStr.c_str(), &end);
 		if (*end != '\0')
 		{
 			std::cout << "Error: value not a number." << std::endl;
