@@ -13,7 +13,8 @@ int	main(int argc, char *argv[])
 	try
 	{
 		Rpn	rpn;
-		// rpn.parseInput(argv[1]);
+		// float result = rpn.parseInput(argv[1]);
+		std::cout << "Result: " << argv[1] << std::endl;
 	}
 	catch (const std::exception &e)
 	{
