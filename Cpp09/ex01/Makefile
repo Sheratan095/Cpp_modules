@@ -20,7 +20,7 @@ fclean: clean
 
 re: fclean all
 
-arg = input.txt
+arg = "asdsa dsa dasdas d"
 
 test: all
 	./$(NAME) $(arg)

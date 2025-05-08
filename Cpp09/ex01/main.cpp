@@ -12,9 +12,10 @@ int	main(int argc, char *argv[])
 
 	try
 	{
-		Rpn	rpn;
-		// float result = rpn.parseInput(argv[1]);
-		std::cout << "Result: " << argv[1] << std::endl;
+		Rpn		rpn;
+		float	result = rpn.parseInput(argv[1]);
+
+		std::cout << "Result: " << result << std::endl;
 	}
 	catch (const std::exception &e)
 	{
