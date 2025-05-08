@@ -6,8 +6,6 @@ void dateTests();
 
 int main(int argc, char *argv[])
 {
-	BitcoinExchange exchange("data.csv");
-
 	if (argc != 2)
 	{
 		std::cerr << "Error: could not open file." << std::endl;
@@ -16,6 +14,7 @@ int main(int argc, char *argv[])
 	std::string inputFile = argv[1];
 	try
 	{
+		BitcoinExchange exchange("data.csv");
 		exchange.parseInputFile(inputFile);	
 	}
 	catch (const std::exception &e)
