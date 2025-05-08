@@ -19,7 +19,7 @@ float	Rpn::tryParse(const std::string& str) const
 	float	value = std::strtof(str.c_str(), &end);
 
 	if (*end != '\0')
-		throw (InvalidRPNExpressionException());
+		throw (InvalidRpnExpressionException());
 
 	if (value < 0 || value > 9)
 		throw (NumberOutOfRangeException());
@@ -30,7 +30,7 @@ float	Rpn::tryParse(const std::string& str) const
 float	Rpn::parseInput(const std::string& input) const
 {
 	if (input.empty())
-		throw (InvalidRPNExpressionException());
+		throw (InvalidRpnExpressionException());
 
 	// 1, 2... (numbers)
 	std::stack<float>	operands;
@@ -54,13 +54,13 @@ float	Rpn::parseInput(const std::string& input) const
 			}
 			catch (const std::exception &e)
 			{
-				throw (InvalidRPNExpressionException());
+				throw (InvalidRpnExpressionException());
 			}
 		}
 
 		// if the element is an operator
 		if (operands.size() < 2)
-			throw (InvalidRPNExpressionException());
+			throw (InvalidRpnExpressionException());
 
 		//stack is now [n2, n1, ....]
 		// because the second element has been pushed first
@@ -82,7 +82,7 @@ float	Rpn::parseInput(const std::string& input) const
 	// if there is more than one element in the stack, the expression is invalid
 	//	means ther're too few operators
 	if (operands.size() != 1)
-		throw (InvalidRPNExpressionException());
+		throw (InvalidRpnExpressionException());
 
 	// return the remaining element in the stack
 	return (operands.top());
@@ -101,9 +101,10 @@ float	Rpn::doSingleCalc(float a, float b, char operation) const
 		case '/':
 			return (a / b);
 	}
+	throw (InvalidRpnExpressionException());
 }
 
-float	Rpn::isOperator(const std::string& str) const
+bool	Rpn::isOperator(const std::string& str) const
 {
 	if (str == "+" || str == "-" || str == "*" || str == "/")
 		return (true);
@@ -119,7 +120,7 @@ Rpn &Rpn::operator=(const Rpn &rhs)
 	return (*this);
 }
 
-const char *Rpn::InvalidRPNExpressionException::what() const throw()
+const char *Rpn::InvalidRpnExpressionException::what() const throw()
 {
 	return ("Invalid expression");
 }

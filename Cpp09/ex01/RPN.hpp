@@ -13,7 +13,7 @@ class Rpn
 	private:
 		float	tryParse(const std::string& str) const;
 		float	doSingleCalc(float a, float b, char operation) const;
-		float	isOperator(const std::string& str) const;
+		bool	isOperator(const std::string& str) const;
 
 
 	public:
@@ -25,7 +25,7 @@ class Rpn
 
 		Rpn &operator=(const Rpn &rhs);
 
-		class InvalidRPNExpressionException : public std::exception
+		class InvalidRpnExpressionException : public std::exception
 		{
 			public:
 				const char *what() const throw();
