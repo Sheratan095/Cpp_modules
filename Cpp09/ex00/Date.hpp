@@ -19,7 +19,7 @@ class Date
 		Date(const Date &source);
 		~Date();
 
-		std::string	toString();
+		std::string	toString() const;
 
 		Date&	operator=(const Date &rhs);
 		bool	operator==(const Date &rhs) const;

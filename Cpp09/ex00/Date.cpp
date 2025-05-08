@@ -77,7 +77,7 @@ Date&	Date::operator=(const Date &rhs)
 	return (*this);
 }
 
-std::string	Date::toString()
+std::string	Date::toString() const
 {
 	std::stringstream ss;
 
