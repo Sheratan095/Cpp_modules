@@ -62,6 +62,9 @@ float	Rpn::parseInput(const std::string& input) const
 		if (operands.size() < 2)
 			throw (InvalidRPNExpressionException());
 
+		//stack is now [n2, n1, ....]
+		// because the second element has been pushed first
+
 		// get the second element and remove it from the stack
 		float	b = operands.top();
 		operands.pop();
