@@ -74,7 +74,7 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		{ 
 			if(line != "date | value")
 			{
-				std::cout << "Error: invalid file header" << std::endl;
+				std::cout << "Error: invalid input file" << std::endl;
 				return;
 			}
 			else
@@ -91,10 +91,10 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 		Date	targetDate;
 		try
 		{
-			std::string	dateStr = line.substr(0, 10);
+			dateStr = line.substr(0, 10);
 			targetDate = Date(dateStr);
 		}
-		catch (const std::exception &ex)
+		catch (const Date::InvalidDateException &ex)
 		{
 			std::cout << "Error: bad date => " << dateStr << std::endl;
 			continue;
