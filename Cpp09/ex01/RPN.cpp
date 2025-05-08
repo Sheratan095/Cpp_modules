@@ -12,8 +12,26 @@ Rpn::Rpn(const Rpn &source)
 Rpn::~Rpn()
 {}
 
+// tryParse: convert a string to a float
+float	Rpn::tryParse(const std::string& str) const
+{
+	char	*end;
+	float	value = std::strtof(str.c_str(), &end);
+
+	if (*end != '\0')
+		throw (InvalidRPNExpressionException());
+
+	if (value > 10 || value < 0)
+		throw (NumberOutOfRangeException());
+
+	return (value);
+}
+
 float	Rpn::parseInput(const std::string& input) const
 {
+	if (input.empty())
+		throw (InvalidRPNExpressionException());
+
 	// 1, 2... (numbers)
 	std::stack<float>	operands;
 
@@ -23,15 +41,53 @@ float	Rpn::parseInput(const std::string& input) const
 	// literrally split the string by space
 	while (sstream >> element)
 	{
-		std::cout << "Element: " << element << std::endl;
+		// if the element isn't an opeartor
+		if (!isOperator(element))
+		{
+			try
+			{
+				// try to parse the element as a float and push it to the stack
+				float	value = tryParse(element);
+				operands.push(value);
+
+				continue;
+			}
+			catch (const std::exception &e)
+			{
+				throw (InvalidRPNExpressionException());
+			}
+		}
+
+		// if the element is an operator
+		if (operands.size() < 2)
+			throw (InvalidRPNExpressionException());
+
+		// get the second element and remove it from the stack
+		float	b = operands.top();
+		operands.pop();
+
+		// get the first element and remove it from the stack
+		float	a = operands.top();
+		operands.pop();
+
+		float	result = doSingleCalc(a, b, element[0]);
+
+		// push the result back to the stack
+		operands.push(result);
 	}
 
-	return (0);
+	// if there is more than one element in the stack, the expression is invalid
+	//	means ther're too few operators
+	if (operands.size() != 1)
+		throw (InvalidRPNExpressionException());
+
+	// return the remaining element in the stack
+	return (operands.top());
 }
 
-float	doSingleCalc(float a, float b, char op)
+float	Rpn::doSingleCalc(float a, float b, char operation) const
 {
-	switch (op)
+	switch (operation)
 	{
 		case '+':
 			return (a + b);
@@ -40,12 +96,19 @@ float	doSingleCalc(float a, float b, char op)
 		case '*':
 			return (a * b);
 		case '/':
-			if (b == 0)
-				throw (std::runtime_error("Division by zero"));
+			// if (b == 0)
+			// 	throw (std::runtime_error("Division by zero"));
 			return (a / b);
 		default:
 			throw (std::runtime_error("Invalid operator"));
 	}
+}
+
+float	Rpn::isOperator(const std::string& str) const
+{
+	if (str == "+" || str == "-" || str == "*" || str == "/")
+		return (true);
+	return (false);
 }
 
 Rpn &Rpn::operator=(const Rpn &rhs)
@@ -54,4 +117,14 @@ Rpn &Rpn::operator=(const Rpn &rhs)
 		return (*this);
 
 	return (*this);
+}
+
+const char *Rpn::InvalidRPNExpressionException::what() const throw()
+{
+	return ("Invalid expression");
+}
+
+const char *Rpn::NumberOutOfRangeException::what() const throw()
+{
+	return ("Number out of range");
 }

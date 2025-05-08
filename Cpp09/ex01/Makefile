@@ -20,7 +20,7 @@ fclean: clean
 
 re: fclean all
 
-arg = "asdsa dsa dasdas d"
+arg = "0 9 2 + -"
 
 test: all
 	./$(NAME) $(arg)
