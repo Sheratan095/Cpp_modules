@@ -120,8 +120,16 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 			continue;
 		}
 
-		std::pair<Date, float> closestDate = getClosestLowerDate(targetDate);
-		std::cout << closestDate.first.toString() << " => " << value << " = " << closestDate.second * value << std::endl;
+		try
+		{
+			std::pair<Date, float> closestDate = getClosestLowerDate(targetDate);
+			std::cout << closestDate.first.toString() << " => " << value << " = " << closestDate.second * value << std::endl;
+		}
+		catch(const EmptyDatabaseException& e)
+		{
+			std::cout << "Error: no data available for or before " << dateStr << std::endl;
+		}
+		
 	}
 
 	file.close();
@@ -129,18 +137,25 @@ void	BitcoinExchange::parseInputFile(const std::string& input) const
 
 std::pair<Date, float>	BitcoinExchange::getClosestLowerDate(const Date &date) const
 {
+	// First try to find an exact match for the date
 	std::map<Date, float>::const_iterator it = this->_values.find(date);
 
+	// If we found an exact date match, return that date and its value
 	if (it != this->_values.end())
 		return (std::make_pair(it->first, it->second));
 
+	// If no exact match, use lower_bound to find the smallest key not less than the date
+	// (lower_bound returns iterator pointing to the first element >= date)
 	it = this->_values.lower_bound(date);
 
-	// if (it == this->_values.begin())
-	// {
-	// 	throw DateNotFoundException();
-	// }
+	// This check is necessary and should be uncommented!
+	// If lower_bound returns the beginning of the map, it means all dates in the database
+	// are greater than the requested date, so there's no "closest lower date"
+	if (it == this->_values.begin())
+		throw (EmptyDatabaseException());
 
+	// Since lower_bound gives us the first element >= date,
+	// we need to move back one step to get the closest date that's < date
 	--it;
 	return (std::make_pair(it->first, it->second));
 }
