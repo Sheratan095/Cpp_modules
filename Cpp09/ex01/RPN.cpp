@@ -21,7 +21,7 @@ float	Rpn::tryParse(const std::string& str) const
 	if (*end != '\0')
 		throw (InvalidRPNExpressionException());
 
-	if (value > 10 || value < 0)
+	if (value < 0 || value > 9)
 		throw (NumberOutOfRangeException());
 
 	return (value);
@@ -99,11 +99,7 @@ float	Rpn::doSingleCalc(float a, float b, char operation) const
 		case '*':
 			return (a * b);
 		case '/':
-			// if (b == 0)
-			// 	throw (std::runtime_error("Division by zero"));
 			return (a / b);
-		default:
-			throw (std::runtime_error("Invalid operator"));
 	}
 }
 
@@ -111,6 +107,7 @@ float	Rpn::isOperator(const std::string& str) const
 {
 	if (str == "+" || str == "-" || str == "*" || str == "/")
 		return (true);
+
 	return (false);
 }
 
