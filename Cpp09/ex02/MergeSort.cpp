@@ -1,47 +1,44 @@
+#include <vector>
 #include <iostream>
 
-static void merge(int leftArray[], int rightArray[], int array[], int leftSize, int rightSize);
+void merge(std::vector<int>& left, std::vector<int>& right, std::vector<int>& result);
 
-void mergeSort(int array[], int size)
+void mergeSort(std::vector<int>& array)
 {
-	if (size <= 1)
-		return;
+	// base case
+	if (array.size() <= 1)
+		return ;
 
-	int middle = size / 2;
-	int leftSize = middle;
-	int rightSize = size - middle;
+	size_t	middle = array.size() / 2;
 
-	int leftArray[leftSize];
-	int rightArray[rightSize];
+	// populate the vectors
+	std::vector<int>	left(array.begin(), array.begin() + middle); // from start to middle
+	std::vector<int>	right(array.begin() + middle, array.end()); // from middle to end
 
-	for (int i = 0; i < size; ++i)
-	{
-		if (i < middle)
-			leftArray[i] = array[i];
-		else
-			rightArray[i - middle] = array[i];
-	}
+	mergeSort(left);
+	mergeSort(right);
 
-	mergeSort(leftArray, leftSize);
-	mergeSort(rightArray, rightSize);
-	merge(leftArray, rightArray, array, leftSize, rightSize);
+	merge(left, right, array);
 }
 
-static void merge(int leftArray[], int rightArray[], int array[], int leftSize, int rightSize)
+void	merge(std::vector<int>& left, std::vector<int>& right, std::vector<int>& result)
 {
-	int i = 0, l = 0, r = 0;
+	result.clear();
 
-	while (l < leftSize && r < rightSize)
+	size_t	l = 0;// for left array
+	size_t	r = 0;// for right array
+
+	while (l < left.size() && r < right.size())
 	{
-		if (leftArray[l] < rightArray[r])
-			array[i++] = leftArray[l++];
-		else
-			array[i++] = rightArray[r++];
+		if (left[l] < right[r])
+			result.push_back(left[l++]);
+		else // right[r] > left[l]
+			result.push_back(right[r++]);
 	}
 
-	while (l < leftSize)
-		array[i++] = leftArray[l++];
+	while (l < left.size())
+		result.push_back(left[l++]);
 
-	while (r < rightSize)
-		array[i++] = rightArray[r++];
+	while (r < right.size())
+		result.push_back(right[r++]);
 }

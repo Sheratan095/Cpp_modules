@@ -1,22 +1,21 @@
-
 #include <iostream>
+#include <vector>
 
-void mergeSort(int array[], int lenght);
+// Forward declaration (since no header file)
+void mergeSort(std::vector<int>& array);
 
 int main()
 {
-	int array[] = {3, 7, 8, 5, 4, 2, 6, 1};
+	std::vector<int>	arr;
+	int	input[] = {38, 27, 43, 3, 9, 82, 10};
+	for (size_t i = 0; i < sizeof(input)/sizeof(input[0]); ++i)
+		arr.push_back(input[i]);
 
-	int len = 8;
+	mergeSort(arr);
 
-	for(int i = 0; i < len; i++)
-		std::cout << array[i] << std::endl;
-
-	mergeSort(array, len);
+	for (size_t i = 0; i < arr.size(); ++i)
+		std::cout << arr[i] << " ";
 	std::cout << std::endl;
 
-
-	for(int i = 0; i < len; i++)
-		std::cout << array[i] << std::endl;
-
+	return (0);
 }
