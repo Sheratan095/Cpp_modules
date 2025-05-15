@@ -3,7 +3,7 @@ NAME = PmergeMe
 CC = c++ -std=c++98 -g -I.
 CC += -Wall -Wextra -Werror
 
-SRCS = main.cpp MergeSort.cpp InsertionSort.cpp
+SRCS = main.cpp MergeSort.cpp InsertionSort.cpp PmergeMe.cpp
 
 all: $(NAME)
 
