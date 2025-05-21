@@ -92,7 +92,7 @@ bool	convertNumber(const char* str, int& result)
 		return (false);
 
 	size_t i = 0;
-	if (str[0] == '+') 
+	if (str[0] == '+')
 		i = 1;
 
 	for (; str[i] != '\0'; ++i)
@@ -100,6 +100,9 @@ bool	convertNumber(const char* str, int& result)
 		if (!std::isdigit(str[i]))
 			return (false);
 	}
+
+	if (i == 1 && str[0] == '+')
+		return (false);
 
 	long value = std::atol(str);
 	if (value < 0 || value > INT_MAX)
