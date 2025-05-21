@@ -9,7 +9,7 @@ void insertionSort(std::vector<int>& array);
 
 int main()
 {
-	PmergeMe sorter;
+	PmergeMe	sorter;
 
 	std::vector<int>	arr;
 	int	input[] = {38, 27, 43, 3, 9, 82, 10, 42342342, 9032};

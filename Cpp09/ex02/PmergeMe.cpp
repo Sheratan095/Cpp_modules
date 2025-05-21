@@ -6,14 +6,14 @@
 // Constructors & Destructor
 PmergeMe::PmergeMe() {}
 PmergeMe::PmergeMe(const PmergeMe &src) { (void)src; }
-PmergeMe& PmergeMe::operator=(const PmergeMe &src) { (void)src; return *this; }
+PmergeMe&	PmergeMe::operator=(const PmergeMe &src) { (void)src; return *this; }
 PmergeMe::~PmergeMe() {}
 
-std::vector<size_t> generateJacobsthalSequence(size_t n)
+std::vector<size_t>	generateJacobsthalSequence(size_t n)
 {
-	std::vector<size_t> sequence;
-	size_t j1 = 1;
-	size_t j2 = 1;
+	std::vector<size_t>	sequence;
+	size_t	j1 = 1;
+	size_t	j2 = 1;
 
 	while (j2 < n)
 	{
@@ -27,19 +27,19 @@ std::vector<size_t> generateJacobsthalSequence(size_t n)
 	return sequence;
 }
 
-void insertWithBinarySearch(std::vector<int> &sorted, int value)
+void	insertWithBinarySearch(std::vector<int> &sorted, int value)
 {
-	std::vector<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), value);
+	std::vector<int>::iterator	pos = std::lower_bound(sorted.begin(), sorted.end(), value);
 	sorted.insert(pos, value);
 }
 
-std::vector<int> PmergeMe::sortVector(const std::vector<int>& input)
+std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 {
 	if (input.size() <= 1)
-		return input;
+		return	(input);
 
 	// Step 1: Create pairs of (min, max)
-	std::vector<std::pair<int, int> > pairs;
+	std::vector<std::pair<int, int>>	pairs;
 	for (size_t i = 0; i + 1 < input.size(); i += 2)
 	{
 		int a = input[i];
@@ -98,5 +98,5 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int>& input)
 	if (hasOdd)
 		insertWithBinarySearch(mainChain, oddElement);
 
-	return mainChain;
+	return (mainChain);
 }
