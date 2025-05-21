@@ -24,7 +24,7 @@ std::vector<size_t>	generateJacobsthalSequence(size_t n)
 	}
 
 	std::reverse(sequence.begin(), sequence.end()); // Insert from large to small
-	return sequence;
+	return (sequence);
 }
 
 void	insertWithBinarySearch(std::vector<int> &sorted, int value)
@@ -51,15 +51,15 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 	}
 
 	// Handle odd element if exists
-	bool hasOdd = (input.size() % 2 != 0);
-	int oddElement = hasOdd ? input[input.size() - 1] : 0;
+	bool	hasOdd = (input.size() % 2 != 0);
+	int		oddElement = hasOdd ? input[input.size() - 1] : 0;
 
 	// Step 2: Recurse on the second (larger) elements
 	std::vector<int> secondElements;
 	for (size_t i = 0; i < pairs.size(); ++i)
 		secondElements.push_back(pairs[i].second);
 
-	std::vector<int> mainChain = sortVector(secondElements);
+	std::vector<int>	mainChain = sortVector(secondElements);
 
 	// Step 3: Insert smaller elements
 	std::vector<int> pendingElements;
