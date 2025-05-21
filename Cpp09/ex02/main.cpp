@@ -10,36 +10,8 @@
 #include "PmergeMe.hpp"
 
 // Function to check if a string contains only digits
-bool	convertNumber(const char* str, int& result)
-{
-	if (!str || str[0] == '\0')
-		return (false);
-
-	size_t i = 0;
-	if (str[0] == '+') 
-		i = 1;
-
-	for (; str[i] != '\0'; ++i)
-	{
-		if (!std::isdigit(str[i]))
-			return (false);
-	}
-
-	long value = std::atol(str);
-	if (value < 0 || value > INT_MAX)
-		return (false);
-
-	result = static_cast<int>(value);
-
-	return (true);
-}
-
-void	printArray(const std::vector<int>& arr)
-{
-	for (size_t i = 0; i < arr.size(); ++i)
-		std::cout << arr[i] << " ";
-	std::cout << std::endl;
-}
+bool	convertNumber(const char* str, int& result);
+void	printArray(const std::vector<int>& arr);
 
 int	main(int argc, char **argv)
 {
@@ -112,4 +84,35 @@ int	main(int argc, char **argv)
 			  << time_list << " us" << std::endl;
 
 	return (0);
+}
+
+bool	convertNumber(const char* str, int& result)
+{
+	if (!str || str[0] == '\0')
+		return (false);
+
+	size_t i = 0;
+	if (str[0] == '+') 
+		i = 1;
+
+	for (; str[i] != '\0'; ++i)
+	{
+		if (!std::isdigit(str[i]))
+			return (false);
+	}
+
+	long value = std::atol(str);
+	if (value < 0 || value > INT_MAX)
+		return (false);
+
+	result = static_cast<int>(value);
+
+	return (true);
+}
+
+void	printArray(const std::vector<int>& arr)
+{
+	for (size_t i = 0; i < arr.size(); ++i)
+		std::cout << arr[i] << " ";
+	std::cout << std::endl;
 }
