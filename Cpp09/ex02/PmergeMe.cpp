@@ -107,7 +107,7 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 // Find position for binary insertion in a list
 std::list<int>::iterator findInsertPosition(std::list<int>& sorted, int value)
 {
-	std::list<int>::iterator it = sorted.begin();
+	std::list<int>::iterator	it = sorted.begin();
 	while (it != sorted.end() && *it < value)
 		++it;
 
@@ -146,20 +146,20 @@ std::list<int>	PmergeMe::sortList(const std::list<int>& input)
 	int		oddElement = 0;
 	if (hasOdd)
 	{
-		std::list<int>::const_iterator lastElement = input.begin();
+		std::list<int>::const_iterator	lastElement = input.begin();
 		std::advance(lastElement, input.size() - 1);
 		oddElement = *lastElement;
 	}
 
 	// Step 2: Recurse on the second (larger) elements
-	std::list<int> secondElements;
+	std::list<int>	secondElements;
 	for (size_t i = 0; i < pairs.size(); ++i)
 		secondElements.push_back(pairs[i].second);
 
 	std::list<int>	mainChain = sortList(secondElements);
 
 	// Step 3: Insert smaller elements
-	std::vector<int> pendingElements;
+	std::vector<int>	pendingElements;
 	for (size_t i = 0; i < pairs.size(); ++i)
 		pendingElements.push_back(pairs[i].first);
 
