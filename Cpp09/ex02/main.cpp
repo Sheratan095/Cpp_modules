@@ -91,7 +91,7 @@ bool	convertNumber(const char* str, int& result)
 	if (!str || str[0] == '\0')
 		return (false);
 
-	size_t i = 0;
+	size_t	i = 0;
 	if (str[0] == '+')
 		i = 1;
 
@@ -104,7 +104,7 @@ bool	convertNumber(const char* str, int& result)
 	if (i == 1 && str[0] == '+')
 		return (false);
 
-	long value = std::atol(str);
+	long	value = std::atol(str);
 	if (value < 0 || value > INT_MAX)
 		return (false);
 
