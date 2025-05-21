@@ -20,7 +20,7 @@ fclean: clean
 
 re: fclean all
 
-arg = 0 9 2
+arg = 0 9 2 8 4 32 3 3 4234 23432423 423424 54
 
 test: all
 	./$(NAME) $(arg)

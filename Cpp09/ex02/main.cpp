@@ -36,17 +36,8 @@ bool	isNumeric(const char* str)
 
 void	printArray(const std::vector<int>& arr)
 {
-	std::cout << "Array: ";
-	for (size_t i = 0; arr.size(); ++i)
+	for (size_t i = 0; i < arr.size(); ++i)
 		std::cout << arr[i] << " ";
-	std::cout << std::endl;
-}
-
-void	printList(const std::list<int>& lst)
-{
-	std::cout << "List: ";
-	for (std::list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
-		std::cout << *it << " ";
 	std::cout << std::endl;
 }
 
@@ -101,9 +92,7 @@ int	main(int argc, char **argv)
 
 	// Display unsorted input
 	std::cout << "Before:";
-	for (size_t i = 0; i < vecInput.size(); ++i)
-		std::cout << " " << vecInput[i];
-	std::cout << std::endl;
+	printArray(vecInput);
 
 	// Time vector sort
 	clock_t	start_vector = clock();
