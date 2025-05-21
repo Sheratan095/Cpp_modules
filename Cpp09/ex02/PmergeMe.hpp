@@ -15,7 +15,7 @@ class PmergeMe
 		~PmergeMe();
 
 		std::vector<int>	sortVector(const std::vector<int>& array);
-		// std::list<int>		sortList(const std::list<int>& list);
+		std::list<int>		sortList(const std::list<int>& list);
 };
 
 #endif
