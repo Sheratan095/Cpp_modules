@@ -1,17 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <ctime> // for clock_t, clock(), CLOCKS_PER_SEC
+#include <ctime>
 #include <iomanip> // for std::setprecision
 #include <cstdlib> // for atol
 #include <cctype> // for isdigit
 #include <string> // for string operations
 #include <climits> // for INT_MAX
 #include "PmergeMe.hpp"
-
-// Forward declarations
-void mergeSort(std::vector<int>& array);
-void insertionSort(std::vector<int>& array);
 
 // Function to check if a string contains only digits
 bool	isNumeric(const char* str)
