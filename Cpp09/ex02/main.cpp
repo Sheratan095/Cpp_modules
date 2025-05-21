@@ -10,24 +10,28 @@
 #include "PmergeMe.hpp"
 
 // Function to check if a string contains only digits
-bool	isNumeric(const char* str)
+bool	convertNumber(const char* str, int& result)
 {
-	if (!str || str[0] == '\0') 
+	if (!str || str[0] == '\0')
 		return (false);
 
-	// Check for leading '+' sign
-	size_t	i = 0;
+	size_t i = 0;
 	if (str[0] == '+') 
 		i = 1;
-	
-	// Check if the rest is all digits
-	for (; str[i] != '\0'; i++)
+
+	for (; str[i] != '\0'; ++i)
 	{
-		if (!std::isdigit(str[i])) 
+		if (!std::isdigit(str[i]))
 			return (false);
 	}
-	
-	return (i > (str[0] == '+' ? 1 : 0)); // Make sure there's at least one digit
+
+	long value = std::atol(str);
+	if (value < 0 || value > INT_MAX)
+		return (false);
+
+	result = static_cast<int>(value);
+
+	return (true);
 }
 
 void	printArray(const std::vector<int>& arr)
@@ -49,40 +53,32 @@ int	main(int argc, char **argv)
 	std::vector<int>	vecInput;
 	std::list<int>		listInput;
 
-	// Parse command line arguments
-	for (int i = 1; i < argc; i++)
+	try
 	{
-		// Check if argument contains only numbers
-		if (!isNumeric(argv[i]))
+		for (int i = 1; i < argc; i++)
 		{
-			std::cerr << "Error" << std::endl;
-			return (1);
-		}
+			int	number;
 
-		long	value;
-		try
-		{
-			value = std::atol(argv[i]);
-			if (value < 0 || value > INT_MAX)
+			if (!convertNumber(argv[i], number))
 			{
 				std::cerr << "Error" << std::endl;
 				return (1);
 			}
 
-			vecInput.push_back(static_cast<int>(value));
-			listInput.push_back(static_cast<int>(value));
+			vecInput.push_back(number);
+			listInput.push_back(number);
 		}
-		catch (std::exception& ex)
-		{
-			std::cerr << "Error" << std::endl;
-			return (1);
-		}
+	}
+	catch (std::exception& ex)
+	{
+		std::cerr << "Error" << std::endl;
+		return (1);
 	}
 
 	// Check for empty input
 	if (vecInput.empty())
 	{
-		std::cerr << "Error: No valid integers provided" << std::endl;
+		std::cerr << "Error" << std::endl;
 		return (1);
 	}
 
