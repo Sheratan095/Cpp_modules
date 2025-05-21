@@ -20,12 +20,13 @@ bool	isNumeric(const char* str)
 		return (false);
 
 	// Check for leading '+' sign
-	size_t i = 0;
+	size_t	i = 0;
 	if (str[0] == '+') 
 		i = 1;
 	
 	// Check if the rest is all digits
-	for (; str[i] != '\0'; i++) {
+	for (; str[i] != '\0'; i++)
+	{
 		if (!std::isdigit(str[i])) 
 			return (false);
 	}
@@ -49,7 +50,7 @@ void	printList(const std::list<int>& lst)
 	std::cout << std::endl;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc < 2)
 	{
@@ -92,7 +93,8 @@ int main(int argc, char **argv)
 	}
 
 	// Check for empty input
-	if (vecInput.empty()) {
+	if (vecInput.empty())
+	{
 		std::cerr << "Error: No valid integers provided" << std::endl;
 		return (1);
 	}
@@ -104,16 +106,16 @@ int main(int argc, char **argv)
 	std::cout << std::endl;
 
 	// Time vector sort
-	clock_t start_vector = clock();
-	std::vector<int> vecSorted = sorter.sortVector(vecInput);
-	clock_t end_vector = clock();
-	double time_vector = static_cast<double>(end_vector - start_vector) / CLOCKS_PER_SEC * 1000000; // Convert to microseconds
+	clock_t	start_vector = clock();
+	std::vector<int>	vecSorted = sorter.sortVector(vecInput);
+	clock_t	end_vector = clock();
+	double	time_vector = static_cast<double>(end_vector - start_vector) / CLOCKS_PER_SEC * 1000000; // Convert to microseconds
 
 	// Time list sort
-	clock_t start_list = clock();
-	std::list<int> listSorted = sorter.sortList(listInput);
-	clock_t end_list = clock();
-	double time_list = static_cast<double>(end_list - start_list) / CLOCKS_PER_SEC * 1000000; // Convert to microseconds
+	clock_t	start_list = clock();
+	std::list<int>	listSorted = sorter.sortList(listInput);
+	clock_t	end_list = clock();
+	double	time_list = static_cast<double>(end_list - start_list) / CLOCKS_PER_SEC * 1000000; // Convert to microseconds
 
 	// Display sorted output
 	std::cout << "After:";
