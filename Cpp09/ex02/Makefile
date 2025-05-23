@@ -26,7 +26,7 @@ test: all
 	./$(NAME) $(shell shuf -i 1-100000 -n 10000)
 
 val: all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes ./$(NAME) $(shell shuf -i 1-100000 -n 10000)
+	valgrind ./$(NAME) $(shell shuf -i 1-100000 -n 10000)
 
 #COLORS
 
