@@ -20,10 +20,10 @@ fclean: clean
 
 re: fclean all
 
-arg = 9 2 8 4 32 3 3 4234 23432423 423424
+arg =
 
 test: all
-	./$(NAME) $(arg)
+	./$(NAME) $(shell shuf -i 1-100000 -n 10000)
 
 val: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes ./$(NAME) $(arg)
