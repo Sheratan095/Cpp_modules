@@ -30,21 +30,25 @@ std::vector<size_t>	generateJacobsthalSequence(size_t n)
 
 void	insertWithBinarySearch(std::vector<int> &sorted, int value)
 {
+	//Finds the first position in which val could be inserted without changing the ordering
+	//An iterator pointing to the first element <em>not less than</em> val, or end() if every element is less than val.
 	std::vector<int>::iterator	pos = std::lower_bound(sorted.begin(), sorted.end(), value);
+
+	//insert the value in that position
 	sorted.insert(pos, value);
 }
 
 std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 {
 	if (input.size() <= 1)
-		return	(input);
+		return (input);
 
 	// Step 1: Create pairs of (min, max)
 	std::vector<std::pair<int, int> >	pairs;
 	for (size_t i = 0; i + 1 < input.size(); i += 2)
 	{
-		int a = input[i];
-		int b = input[i + 1];
+		int	a = input[i];
+		int	b = input[i + 1];
 		if (a < b)
 			pairs.push_back(std::make_pair(a, b));
 		else
@@ -56,7 +60,7 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 	int		oddElement = hasOdd ? input[input.size() - 1] : 0;
 
 	// Step 2: Recurse on the second (larger) elements
-	std::vector<int> secondElements;
+	std::vector<int>	secondElements;
 	for (size_t i = 0; i < pairs.size(); ++i)
 		secondElements.push_back(pairs[i].second);
 
@@ -105,7 +109,7 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 //------------------------------------------------------------------------------------
 
 // Find position for binary insertion in a list
-std::list<int>::iterator findInsertPosition(std::list<int>& sorted, int value)
+std::list<int>::iterator	findInsertPosition(std::list<int>& sorted, int value)
 {
 	std::list<int>::iterator	it = sorted.begin();
 	while (it != sorted.end() && *it < value)
