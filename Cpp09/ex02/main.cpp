@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	}
 
 	// Display unsorted input
-	std::cout << "Before:";
+	std::cout << "Before: ";
 	printArray(vecInput);
 
 	// Time vector sort
