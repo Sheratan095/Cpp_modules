@@ -76,7 +76,7 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
     int		odd_element = -1;
     bool	has_odd = (input.size() % 2 != 0);
     
-    // Step 1: Create pairs
+    // Step 1: Create pairs alreay sorted
     std::vector<std::pair<int, int> >	pairs;
     for (size_t i = 0; i < input.size() - (has_odd ? 1 : 0); i += 2) {
         if (input[i] > input[i + 1])
