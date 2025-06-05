@@ -39,7 +39,7 @@ std::vector<int> generateInsertionSequence(int n) {
     result.push_back(1);
     
     // Follow Jacobsthal sequence
-    for (size_t i = 3; i < jacobsthal.size(); i++) {
+    for (size_t i = 3; i + 1 < jacobsthal.size(); i++) {
         int start = jacobsthal[i];
         int end = std::min(n, jacobsthal[i+1]);
         
