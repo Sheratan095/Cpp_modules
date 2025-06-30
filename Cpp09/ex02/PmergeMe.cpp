@@ -4,198 +4,290 @@
 #include <list>
 #include <algorithm> // for sort, lower_bound
 
-// Constructors & Destructor
 PmergeMe::PmergeMe() {}
 PmergeMe::PmergeMe(const PmergeMe &src) { (void)src; }
 PmergeMe&	PmergeMe::operator=(const PmergeMe &src) { (void)src; return *this; }
 PmergeMe::~PmergeMe() {}
 
-// Generate Jacobsthal sequence up to n
-std::vector<int> generateJacobsthalSequence(int n) {
-    std::vector<int> sequence;
-    sequence.push_back(0);
-    sequence.push_back(1);
-    
-    for (int i = 2; i <= n; i++) {
-        sequence.push_back(sequence[i-1] + 2 * sequence[i-2]);
-    }
-    
-    return sequence;
-}
-
-// Generate insertion sequence based on Jacobsthal numbers
-std::vector<int> generateInsertionSequence(int n) {
-    std::vector<int> result;
-    if (n <= 0) return result;
-    
-    // Calculate how many Jacobsthal numbers we need
-    int jacobsthalCount = 0;
-    while (generateJacobsthalSequence(jacobsthalCount).back() < n)
-        jacobsthalCount++;
-    
-    std::vector<int> jacobsthal = generateJacobsthalSequence(jacobsthalCount);
-    
-    // Start with position 1 (first small element)
-    result.push_back(1);
-    
-    // Follow Jacobsthal sequence
-    for (size_t i = 3; i + 1 < jacobsthal.size(); i++) {
-        int start = jacobsthal[i];
-        int end = std::min(n, jacobsthal[i+1]);
-        
-        // Add elements in reverse order
-        for (int j = start; j > end; j--) {
-            if (j <= n) result.push_back(j);
-        }
-    }
-    
-    // Add any remaining positions
-    for (int i = 1; i <= n; i++) {
-        if (std::find(result.begin(), result.end(), i) == result.end()) {
-            result.push_back(i);
-        }
-    }
-    
-    return result;
-}
-
-void	insertWithBinarySearch(std::vector<int>& vec, int element)
+// Helper function to generate Jacobsthal numbers for optimal insertion order
+std::vector<size_t> generateJacobsthal(size_t n)
 {
-    // Find the position to insert the element using binary search
-    // and insert it in sorted order
-    std::vector<int>::iterator it = std::lower_bound(vec.begin(), vec.end(), element);
-    vec.insert(it, element);
+	std::vector<size_t> jacobsthal;
+	if (n == 0)
+		return jacobsthal;
+	
+	jacobsthal.push_back(1);
+	if (n == 1)
+		return jacobsthal;
+	
+	jacobsthal.push_back(3);
+	
+	size_t	prev = 1, curr = 3;
+	while (curr < n)
+	{
+		size_t next = curr + 2 * prev;
+		if (next > n)
+			break;
+		jacobsthal.push_back(next);
+		prev = curr;
+		curr = next;
+	}
+	return jacobsthal;
 }
 
 std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 {
-    // Handle base cases
-    if (input.size() <= 1)
-        return (input);
-
-    int		odd_element = -1;
-    bool	has_odd = (input.size() % 2 != 0);
-    
-    // Step 1: Create pairs alreay sorted
-    std::vector<std::pair<int, int> >	pairs;
-    for (size_t i = 0; i < input.size() - (has_odd ? 1 : 0); i += 2) {
-        if (input[i] > input[i + 1])
-            pairs.push_back(std::make_pair(input[i], input[i + 1]));
-        else
-            pairs.push_back(std::make_pair(input[i + 1], input[i]));
-    }
-    
-    // Save the odd element if exists
-    if (has_odd)
-        odd_element = input[input.size() - 1];
-    
-    // Step 2: Extract larger elements
-    std::vector<int>	larger_elements;
-    for (size_t i = 0; i < pairs.size(); i++)
-        larger_elements.push_back(pairs[i].first);
-    
-    // Step 3: Recursively sort larger elements
-    larger_elements = sortVector(larger_elements);
-    
-    // Step 4: Create result array with sorted larger elements
-    std::vector<int>	result = larger_elements;
-    
-    // Step 5: Insert smaller elements using binary insertion with Jacobsthal sequence
-    // Insert the first smaller element
-    if (!pairs.empty())
-        insertWithBinarySearch(result, pairs[0].second);
-        
-    // Generate insertion sequence based on Jacobsthal numbers
-    std::vector<int> insertionOrder = generateInsertionSequence(pairs.size());
-    
-    // Insert the rest according to Jacobsthal sequence
-    for (size_t i = 1; i < insertionOrder.size() && i < pairs.size(); i++) {
-        int idx = insertionOrder[i] - 1; // Convert to 0-indexed
-        if (idx < static_cast<int>(pairs.size()))
-            insertWithBinarySearch(result, pairs[idx].second);
-    }
-    
-    // Step 6: Insert the odd element if exists
-    if (has_odd)
-        insertWithBinarySearch(result, odd_element);
-    
-    return (result);
+	// Ford-Johnson Algorithm for Vector
+	// Example: input = [5, 2, 8, 1, 9, 3]
+	
+	if (input.size() <= 1)
+		return input;
+	
+	std::vector<int>	result = input;
+	size_t				n = result.size();
+	bool				hasOdd = (n % 2 == 1);
+	int					oddElement = hasOdd ? result[n - 1] : 0;
+	
+	if (hasOdd)
+	{
+		result.pop_back();
+		n--;
+	}
+	
+	// Step 1: Create pairs and sort each pair
+	// [5,2] [8,1] [9,3] -> [2,5] [1,8] [3,9]
+	std::vector<std::pair<int, int> >	pairs;
+	for (size_t i = 0; i < n; i += 2)
+	{
+		if (result[i] > result[i + 1])
+			pairs.push_back(std::make_pair(result[i + 1], result[i]));
+		else
+			pairs.push_back(std::make_pair(result[i], result[i + 1]));
+	}
+	
+	// Step 2: Sort pairs by their larger element (second in pair)
+	// Sort by: 5, 8, 9 -> pairs: [2,5] [1,8] [3,9]
+	for (size_t i = 1; i < pairs.size(); i++)
+	{
+		std::pair<int, int>	key = pairs[i];
+		int					j = i - 1;
+		while (j >= 0 && pairs[j].second > key.second)
+		{
+			pairs[j + 1] = pairs[j];
+			j--;
+		}
+		pairs[j + 1] = key;
+	}
+	
+	// Step 3: Create main chain with larger elements and pending smaller elements
+	std::vector<int>	mainChain;
+	std::vector<int>	pending;
+	
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		mainChain.push_back(pairs[i].second);
+		pending.push_back(pairs[i].first);
+	}
+	
+	// Step 4: Insert first pending element at the beginning
+	// 	the first pending element is the smallest of all because pairs are sorted
+	if (!pending.empty())
+		mainChain.insert(mainChain.begin(), pending[0]);
+	
+	// Step 5: Insert remaining elements using Jacobsthal sequence
+	// Jacobsthal sequence provides optimal insertion order: 1, 3, 5, 11, 21...
+	std::vector<size_t>	jacobsthal = generateJacobsthal(pending.size());
+	std::vector<bool>	inserted(pending.size(), false);
+	if (!pending.empty())
+		inserted[0] = true;
+	
+	for (size_t i = 0; i < jacobsthal.size(); i++)
+	{
+		size_t	idx = jacobsthal[i] - 1;
+		if (idx < pending.size() && !inserted[idx])
+		{
+			// Binary search insertion
+			std::vector<int>::iterator	pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[idx]);
+			mainChain.insert(pos, pending[idx]);
+			inserted[idx] = true;
+		}
+		
+		// Insert remaining elements in reverse order up to current Jacobsthal number
+		for (int j = (i > 0 ? jacobsthal[i - 1] : 1); j < (int)jacobsthal[i] - 1; j++)
+		{
+			if (j < (int)pending.size() && !inserted[j])
+			{
+				std::vector<int>::iterator	pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[j]);
+				mainChain.insert(pos, pending[j]);
+				inserted[j] = true;
+			}
+		}
+	}
+	
+	// Insert any remaining elements
+	for (size_t i = 1; i < pending.size(); i++)
+	{
+		if (!inserted[i])
+		{
+			std::vector<int>::iterator	pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[i]);
+			mainChain.insert(pos, pending[i]);
+		}
+	}
+	
+	// Step 6: Insert odd element if exists
+	if (hasOdd)
+	{
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), oddElement);
+		mainChain.insert(pos, oddElement);
+	}
+	
+	return mainChain;
 }
 
 //------------------------------------------------------------------------------------
 
 std::list<int>	PmergeMe::sortList(const std::list<int>& input)
 {
-    // Handle base cases
-    if (input.size() <= 1)
-        return input;
+	// Ford-Johnson Algorithm for List (adapted for bidirectional iterators)
 
-    int		odd_element = -1;
-    bool	has_odd = (input.size() % 2 != 0);
-    
-    // Step 1: Create pairs
-    std::vector<std::pair<int, int> >	pairs;
-    std::list<int>::const_iterator		it = input.begin();
-    while (it != input.end())
-    {
-        int	first = *it++;
-        if (it == input.end()) {
-            odd_element = first;
-            break;
-        }
+	if (input.size() <= 1)
+		return input;
 
-        int	second = *it++;
-        if (first > second)
-            pairs.push_back(std::make_pair(first, second));
-        else
-            pairs.push_back(std::make_pair(second, first));
-    }
-    
-    // Step 2: Extract larger elements
-    std::list<int>	larger_elements;
-    for (size_t i = 0; i < pairs.size(); i++)
-        larger_elements.push_back(pairs[i].first);
-    
-    // Step 3: Recursively sort larger elements
-    larger_elements = sortList(larger_elements);
-    
-    // Step 4: Create result list with sorted larger elements
-    std::list<int>	result = larger_elements;
-    
-    // Step 5: Insert smaller elements using binary insertion with Jacobsthal sequence
-    // Insert the first smaller element if pairs exist
-    if (!pairs.empty()) {
-        std::list<int>::iterator position = result.begin();
-        while (position != result.end() && *position < pairs[0].second)
-            ++position;
-        result.insert(position, pairs[0].second);
-    }
-    
-    // Generate insertion sequence based on Jacobsthal numbers
-    std::vector<int> insertionOrder = generateInsertionSequence(pairs.size());
-    
-    // Insert the rest according to Jacobsthal sequence
-    for (size_t i = 1; i < insertionOrder.size() && i < pairs.size(); i++) {
-        int idx = insertionOrder[i] - 1; // Convert to 0-indexed
-        if (idx < static_cast<int>(pairs.size())) {
-            int element_to_insert = pairs[idx].second;
-            
-            // Find insertion position using binary search concept
-            std::list<int>::iterator position = result.begin();
-            while (position != result.end() && *position < element_to_insert)
-                ++position;
-            
-            result.insert(position, element_to_insert);
-        }
-    }
-    
-    // Step 6: Insert the odd element if exists
-    if (has_odd) {
-        std::list<int>::iterator position = result.begin();
-        while (position != result.end() && *position < odd_element)
-            ++position;
-        result.insert(position, odd_element);
-    }
-    
-    return result;
+	std::list<int>	result = input;
+	size_t			n = result.size();
+	bool			hasOdd = (n % 2 == 1);
+	int				oddElement = hasOdd ? result.back() : 0;
+	
+	if (hasOdd)
+	{
+		result.pop_back();
+		n--;
+	}
+	
+	// Step 1: Create pairs and sort each pair
+	std::vector<std::pair<int, int> >	pairs;
+	std::list<int>::iterator			it = result.begin();
+	while (it != result.end())
+	{
+		int first = *it++;
+		int second = *it++;
+		if (first > second)
+			pairs.push_back(std::make_pair(second, first));
+		else
+			pairs.push_back(std::make_pair(first, second));
+	}
+	
+	// Step 2: Sort pairs by their larger element
+	for (size_t i = 1; i < pairs.size(); i++)
+	{
+		std::pair<int, int> key = pairs[i];
+		int j = i - 1;
+		while (j >= 0 && pairs[j].second > key.second)
+		{
+			pairs[j + 1] = pairs[j];
+			j--;
+		}
+		pairs[j + 1] = key;
+	}
+	
+	// Step 3: Create main chain and pending list
+	std::list<int>		mainChain;
+	std::vector<int>	pending;
+	
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		mainChain.push_back(pairs[i].second);
+		pending.push_back(pairs[i].first);
+	}
+	
+	// Step 4: Insert first pending element at the beginning
+	if (!pending.empty())
+		mainChain.push_front(pending[0]);
+	
+	// Step 5: Insert remaining elements using Jacobsthal sequence
+	std::vector<size_t>	jacobsthal = generateJacobsthal(pending.size());
+	std::vector<bool>	inserted(pending.size(), false);
+	if (!pending.empty()) inserted[0] = true;
+	
+	for (size_t i = 0; i < jacobsthal.size(); i++)
+	{
+		size_t	idx = jacobsthal[i] - 1;
+		if (idx < pending.size() && !inserted[idx])
+		{
+			// Binary search for list (manual implementation)
+			std::list<int>::iterator pos = mainChain.begin();
+			for (std::list<int>::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+			{
+				if (*it >= pending[idx])
+				{
+					pos = it;
+					break;
+				}
+				pos = it;
+				++pos;
+			}
+			mainChain.insert(pos, pending[idx]);
+			inserted[idx] = true;
+		}
+		
+		// Insert remaining elements in reverse order
+		for (int j = (i > 0 ? jacobsthal[i - 1] : 1); j < (int)jacobsthal[i] - 1; j++)
+		{
+			if (j < (int)pending.size() && !inserted[j])
+			{
+				std::list<int>::iterator pos = mainChain.begin();
+				for (std::list<int>::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+				{
+					if (*it >= pending[j]) {
+						pos = it;
+						break;
+					}
+					pos = it;
+					++pos;
+				}
+				mainChain.insert(pos, pending[j]);
+				inserted[j] = true;
+			}
+		}
+	}
+	
+	// Insert any remaining elements
+	for (size_t i = 1; i < pending.size(); i++)
+	{
+		if (!inserted[i])
+		{
+			std::list<int>::iterator pos = mainChain.begin();
+			for (std::list<int>::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+			{
+				if (*it >= pending[i])
+				{
+					pos = it;
+					break;
+				}
+				pos = it;
+				++pos;
+			}
+			mainChain.insert(pos, pending[i]);
+		}
+	}
+	
+	// Step 6: Insert odd element if exists
+	if (hasOdd)
+	{
+		std::list<int>::iterator	pos = mainChain.begin();
+
+		for (std::list<int>::iterator it = mainChain.begin(); it != mainChain.end(); ++it)
+		{
+			if (*it >= oddElement)
+			{
+				pos = it;
+				break;
+			}
+			pos = it;
+			++pos;
+		}
+		mainChain.insert(pos, oddElement);
+	}
+	
+	return mainChain;
 }
