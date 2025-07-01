@@ -66,6 +66,11 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 	}
 	
 	// Step 2: Sort pairs by their larger element (second in pair)
+	// *** THIS IS THE "MERGE" PART ***
+	// We recursively sort the larger elements, which conceptually represents
+	// the merge operation from merge-sort. In a full recursive implementation,
+	// this would be a recursive call to sort the sequence of larger elements.
+	// Here it's implemented iteratively with insertion sort for simplicity.
 	// Sort by: 5, 8, 9 -> pairs: [2,5] [1,8] [3,9]
 	for (size_t i = 1; i < pairs.size(); i++)
 	{
@@ -80,13 +85,16 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 	}
 	
 	// Step 3: Create main chain with larger elements and pending smaller elements
+	// *** MERGE RESULT: The main chain represents the "merged" sorted sequence ***
+	// of larger elements. This is equivalent to the result of merge-sort on
+	// the larger elements from each pair.
 	std::vector<int>	mainChain;
 	std::vector<int>	pending;
 	
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		mainChain.push_back(pairs[i].second);
-		pending.push_back(pairs[i].first);
+		mainChain.push_back(pairs[i].second);  // Sorted larger elements (merge result)
+		pending.push_back(pairs[i].first);    // Smaller elements to be inserted
 	}
 	
 	std::vector<bool>	inserted(pending.size(), false);
@@ -135,21 +143,52 @@ std::vector<int>	PmergeMe::sortVector(const std::vector<int>& input)
 		
 		// STEP 5B: Insert elements between previous and current Jacobsthal numbers
 		// 
-		// CRITICAL INSIGHT - WHY REVERSE ORDER:
-		// We insert from (previous_jacobsthal) to (current_jacobsthal-1) but NOT in forward order!
-		// Instead, we use the RANGE but the actual implementation here goes FORWARD, which is
-		// actually a simplified version. The true Ford-Johnson inserts in a specific order
-		// that ensures each element has optimal search boundaries.
+		// DETAILED LOOP EXPLANATION:
+		// This loop inserts elements that fall between two consecutive Jacobsthal numbers.
+		// 
+		// LOOP BOUNDS BREAKDOWN:
+		// - START: j = (i > 0 ? jacobsthal[i - 1] : 1)
+		//   * If i > 0: start from previous Jacobsthal number
+		//   * If i = 0: start from 1 (since jacobsthal[0] = 1, we skip index 0 which is already inserted)
+		// - END: j < (int)jacobsthal[i] - 1
+		//   * Stop before current Jacobsthal number (since we already inserted jacobsthal[i] above)
 		//
-		// EXAMPLE: Between J(0)=1 and J(1)=3, we have index 1
-		// - We insert pending[1] after pending[2] is already positioned
-		// - This gives pending[1] better search bounds because pending[2] acts as a reference point
+		// CONCRETE EXAMPLE with pending = [a, b, c, d, e, f] (indices 0,1,2,3,4,5):
+		// Jacobsthal sequence: [1, 3, 5]
 		//
-		// Insert remaining elements in reverse order up to current Jacobsthal number
+		// Round 1: i=0, jacobsthal[0]=1
+		// - We inserted pending[0] in Step 5A
+		// - Loop: j from 1 to -1 → NO iterations (1 < 0 is false)
+		//
+		// Round 2: i=1, jacobsthal[1]=3  
+		// - We inserted pending[2] in Step 5A (jacobsthal[1]-1 = 3-1 = 2)
+		// - Loop: j from 1 to 1 (jacobsthal[0]=1 to jacobsthal[1]-1=2)
+		// - Insert pending[1] → element between positions 1 and 3
+		//
+		// Round 3: i=2, jacobsthal[2]=5
+		// - We inserted pending[4] in Step 5A (jacobsthal[2]-1 = 5-1 = 4) 
+		// - Loop: j from 3 to 3 (jacobsthal[1]=3 to jacobsthal[2]-1=4)
+		// - Insert pending[3] → element between positions 3 and 5
+		//
+		// WHY THIS ORDER? Elements between Jacobsthal positions benefit from having
+		// "anchor points" already placed. When we insert pending[j], we know that:
+		// 1. pending[jacobsthal[i]-1] is already positioned (the anchor)
+		// 2. This constrains the search space for pending[j]
+		// 3. The binary search becomes more efficient
+		//
 		for (int j = (i > 0 ? jacobsthal[i - 1] : 1); j < (int)jacobsthal[i] - 1; j++)
 		{
+			// SAFETY CHECKS:
+			// - j < pending.size(): Don't go beyond array bounds
+			// - !inserted[j]: Don't insert same element twice
 			if (j < (int)pending.size() && !inserted[j])
 			{
+				// OPTIMIZATION INSIGHT:
+				// By this point, pending[jacobsthal[i]-1] is already in mainChain,
+				// acting as a "fence" that reduces the binary search space for pending[j].
+				// This is why the Jacobsthal sequence is optimal - it creates the best
+				// possible search boundaries for subsequent insertions.
+				//
 				// Each insertion benefits from the positioning of previously inserted Jacobsthal elements
 				// The binary search has better bounds thanks to the "anchor" elements already placed
 				std::vector<int>::iterator	pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[j]);
