@@ -20,13 +20,13 @@ fclean: clean
 
 re: fclean all
 
-arg =
+arg = $(shell shuf -i 1-100 -n 100)
 
 test: all
-	./$(NAME) $(shell shuf -i 1-100000 -n 10000)
+	./$(NAME) $(arg)
 
 val: all
-	valgrind ./$(NAME) $(shell shuf -i 1-100000 -n 10000)
+	valgrind ./$(NAME) $(arg)
 
 #COLORS
 
