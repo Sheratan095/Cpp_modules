@@ -136,10 +136,9 @@ std::pair<Date, float>	BitcoinExchange::getClosestLowerDate(const Date &date) co
 
 	it = this->_values.lower_bound(date);
 
-	// if (it == this->_values.begin())
-	// {
-	// 	throw DateNotFoundException();
-	// }
+	// Check for a date before that input date
+	if (it == this->_values.begin())
+		return (std::make_pair(date, 0));
 
 	--it;
 	return (std::make_pair(it->first, it->second));
